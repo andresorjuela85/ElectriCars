@@ -1,0 +1,811 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5450D47F2899AF9E0020FB3F /* CarsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5450D47E2899AF9E0020FB3F /* CarsTableViewCell.swift */; };
+		5450D4822899BBF70020FB3F /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5450D4812899BBF70020FB3F /* AlamofireImage */; };
+		5450D485289AE0D20020FB3F /* DetailCarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5450D484289AE0D20020FB3F /* DetailCarViewModel.swift */; };
+		545BAD8128A2D9AD00DEAE19 /* AddReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545BAD8028A2D9AD00DEAE19 /* AddReviewViewController.swift */; };
+		545BAD8328A3056800DEAE19 /* AddReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545BAD8228A3056800DEAE19 /* AddReviewViewModel.swift */; };
+		545BAD8528A3FD1C00DEAE19 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545BAD8428A3FD1C00DEAE19 /* ReviewTableViewCell.swift */; };
+		547DE17C289D5F69003ED4ED /* StationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547DE17B289D5F69003ED4ED /* StationsTableViewCell.swift */; };
+		547DE17F289D8405003ED4ED /* DetailStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547DE17E289D8405003ED4ED /* DetailStationViewController.swift */; };
+		547DE181289D841B003ED4ED /* DetailStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547DE180289D841B003ED4ED /* DetailStationViewModel.swift */; };
+		54A08CEF2892ECA200D22B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08CEE2892ECA200D22B1E /* AppDelegate.swift */; };
+		54A08CF12892ECA200D22B1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08CF02892ECA200D22B1E /* SceneDelegate.swift */; };
+		54A08CF62892ECA200D22B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54A08CF42892ECA200D22B1E /* Main.storyboard */; };
+		54A08CF82892ECA500D22B1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54A08CF72892ECA500D22B1E /* Assets.xcassets */; };
+		54A08CFB2892ECA500D22B1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54A08CF92892ECA500D22B1E /* LaunchScreen.storyboard */; };
+		54A08D062892ECA500D22B1E /* ElectriCarsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D052892ECA500D22B1E /* ElectriCarsTests.swift */; };
+		54A08D102892ECA500D22B1E /* ElectriCarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D0F2892ECA500D22B1E /* ElectriCarsUITests.swift */; };
+		54A08D122892ECA500D22B1E /* ElectriCarsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D112892ECA500D22B1E /* ElectriCarsUITestsLaunchTests.swift */; };
+		54A08D202892ED0C00D22B1E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D1F2892ED0C00D22B1E /* AppCoordinator.swift */; };
+		54A08D222892F2CC00D22B1E /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D212892F2CC00D22B1E /* TabCoordinator.swift */; };
+		54A08D262892F6D200D22B1E /* CarsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D252892F6D200D22B1E /* CarsCoordinator.swift */; };
+		54A08D282892F6E200D22B1E /* CarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D272892F6E200D22B1E /* CarsViewModel.swift */; };
+		54A08D2A2892F6FE00D22B1E /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D292892F6FE00D22B1E /* CarsViewController.swift */; };
+		54A08D2C2892F79600D22B1E /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D2B2892F79600D22B1E /* Screens.swift */; };
+		54A08D2E2893038900D22B1E /* StationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D2D2893038900D22B1E /* StationsViewController.swift */; };
+		54A08D302893039C00D22B1E /* StationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D2F2893039C00D22B1E /* StationsViewModel.swift */; };
+		54A08D32289303AD00D22B1E /* StationsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D31289303AD00D22B1E /* StationsCoordinator.swift */; };
+		54A08D35289336C200D22B1E /* DetailCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D34289336C200D22B1E /* DetailCarViewController.swift */; };
+		54A08D3E28934FB200D22B1E /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 54A08D3D28934FB200D22B1E /* Apollo */; };
+		54A08D4028934FB200D22B1E /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 54A08D3F28934FB200D22B1E /* ApolloWebSocket */; };
+		54A08D442893530B00D22B1E /* ListCars.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 54A08D432893530B00D22B1E /* ListCars.graphql */; };
+		54A08D462893538100D22B1E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D452893538100D22B1E /* API.swift */; };
+		54A08D482893545A00D22B1E /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D472893545A00D22B1E /* Network.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		54A08D022892ECA500D22B1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 54A08CE32892ECA100D22B1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 54A08CEA2892ECA200D22B1E;
+			remoteInfo = ElectriCars;
+		};
+		54A08D0C2892ECA500D22B1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 54A08CE32892ECA100D22B1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 54A08CEA2892ECA200D22B1E;
+			remoteInfo = ElectriCars;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5450D47E2899AF9E0020FB3F /* CarsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsTableViewCell.swift; sourceTree = "<group>"; };
+		5450D484289AE0D20020FB3F /* DetailCarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCarViewModel.swift; sourceTree = "<group>"; };
+		545BAD8028A2D9AD00DEAE19 /* AddReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewViewController.swift; sourceTree = "<group>"; };
+		545BAD8228A3056800DEAE19 /* AddReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewViewModel.swift; sourceTree = "<group>"; };
+		545BAD8428A3FD1C00DEAE19 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		547DE17B289D5F69003ED4ED /* StationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsTableViewCell.swift; sourceTree = "<group>"; };
+		547DE17E289D8405003ED4ED /* DetailStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStationViewController.swift; sourceTree = "<group>"; };
+		547DE180289D841B003ED4ED /* DetailStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStationViewModel.swift; sourceTree = "<group>"; };
+		54A08CEB2892ECA200D22B1E /* ElectriCars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectriCars.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54A08CEE2892ECA200D22B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		54A08CF02892ECA200D22B1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		54A08CF52892ECA200D22B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		54A08CF72892ECA500D22B1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		54A08CFA2892ECA500D22B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		54A08CFC2892ECA500D22B1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54A08D012892ECA500D22B1E /* ElectriCarsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElectriCarsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		54A08D052892ECA500D22B1E /* ElectriCarsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectriCarsTests.swift; sourceTree = "<group>"; };
+		54A08D0B2892ECA500D22B1E /* ElectriCarsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElectriCarsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		54A08D0F2892ECA500D22B1E /* ElectriCarsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectriCarsUITests.swift; sourceTree = "<group>"; };
+		54A08D112892ECA500D22B1E /* ElectriCarsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectriCarsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		54A08D1F2892ED0C00D22B1E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		54A08D212892F2CC00D22B1E /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		54A08D252892F6D200D22B1E /* CarsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsCoordinator.swift; sourceTree = "<group>"; };
+		54A08D272892F6E200D22B1E /* CarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewModel.swift; sourceTree = "<group>"; };
+		54A08D292892F6FE00D22B1E /* CarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
+		54A08D2B2892F79600D22B1E /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
+		54A08D2D2893038900D22B1E /* StationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewController.swift; sourceTree = "<group>"; };
+		54A08D2F2893039C00D22B1E /* StationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewModel.swift; sourceTree = "<group>"; };
+		54A08D31289303AD00D22B1E /* StationsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsCoordinator.swift; sourceTree = "<group>"; };
+		54A08D34289336C200D22B1E /* DetailCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCarViewController.swift; sourceTree = "<group>"; };
+		54A08D422893512700D22B1E /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = schema.json; path = ElectriCars/schema.json; sourceTree = SOURCE_ROOT; };
+		54A08D432893530B00D22B1E /* ListCars.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ListCars.graphql; sourceTree = "<group>"; };
+		54A08D452893538100D22B1E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = ElectriCars/API.swift; sourceTree = SOURCE_ROOT; };
+		54A08D472893545A00D22B1E /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		54A08CE82892ECA200D22B1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54A08D3E28934FB200D22B1E /* Apollo in Frameworks */,
+				54A08D4028934FB200D22B1E /* ApolloWebSocket in Frameworks */,
+				5450D4822899BBF70020FB3F /* AlamofireImage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54A08CFE2892ECA500D22B1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54A08D082892ECA500D22B1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5450D483289AE0510020FB3F /* DetailCar */ = {
+			isa = PBXGroup;
+			children = (
+				54A08D34289336C200D22B1E /* DetailCarViewController.swift */,
+				5450D484289AE0D20020FB3F /* DetailCarViewModel.swift */,
+			);
+			path = DetailCar;
+			sourceTree = "<group>";
+		};
+		547DE17D289D83C5003ED4ED /* DetailStation */ = {
+			isa = PBXGroup;
+			children = (
+				547DE17E289D8405003ED4ED /* DetailStationViewController.swift */,
+				547DE180289D841B003ED4ED /* DetailStationViewModel.swift */,
+				545BAD8028A2D9AD00DEAE19 /* AddReviewViewController.swift */,
+				545BAD8228A3056800DEAE19 /* AddReviewViewModel.swift */,
+				545BAD8428A3FD1C00DEAE19 /* ReviewTableViewCell.swift */,
+			);
+			path = DetailStation;
+			sourceTree = "<group>";
+		};
+		54A08CE22892ECA100D22B1E = {
+			isa = PBXGroup;
+			children = (
+				54A08CED2892ECA200D22B1E /* ElectriCars */,
+				54A08D042892ECA500D22B1E /* ElectriCarsTests */,
+				54A08D0E2892ECA500D22B1E /* ElectriCarsUITests */,
+				54A08CEC2892ECA200D22B1E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		54A08CEC2892ECA200D22B1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				54A08CEB2892ECA200D22B1E /* ElectriCars.app */,
+				54A08D012892ECA500D22B1E /* ElectriCarsTests.xctest */,
+				54A08D0B2892ECA500D22B1E /* ElectriCarsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		54A08CED2892ECA200D22B1E /* ElectriCars */ = {
+			isa = PBXGroup;
+			children = (
+				54A08CEE2892ECA200D22B1E /* AppDelegate.swift */,
+				54A08CF02892ECA200D22B1E /* SceneDelegate.swift */,
+				54A08D1E2892ECC100D22B1E /* Navigation */,
+				54A08D332893343A00D22B1E /* Services */,
+				54A08D232892F69500D22B1E /* CarsStack */,
+				54A08D242892F6AC00D22B1E /* StationsStack */,
+				54A08CF42892ECA200D22B1E /* Main.storyboard */,
+				54A08CF72892ECA500D22B1E /* Assets.xcassets */,
+				54A08CF92892ECA500D22B1E /* LaunchScreen.storyboard */,
+				54A08CFC2892ECA500D22B1E /* Info.plist */,
+			);
+			path = ElectriCars;
+			sourceTree = "<group>";
+		};
+		54A08D042892ECA500D22B1E /* ElectriCarsTests */ = {
+			isa = PBXGroup;
+			children = (
+				54A08D052892ECA500D22B1E /* ElectriCarsTests.swift */,
+			);
+			path = ElectriCarsTests;
+			sourceTree = "<group>";
+		};
+		54A08D0E2892ECA500D22B1E /* ElectriCarsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				54A08D0F2892ECA500D22B1E /* ElectriCarsUITests.swift */,
+				54A08D112892ECA500D22B1E /* ElectriCarsUITestsLaunchTests.swift */,
+			);
+			path = ElectriCarsUITests;
+			sourceTree = "<group>";
+		};
+		54A08D1E2892ECC100D22B1E /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				54A08D1F2892ED0C00D22B1E /* AppCoordinator.swift */,
+				54A08D212892F2CC00D22B1E /* TabCoordinator.swift */,
+				54A08D2B2892F79600D22B1E /* Screens.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		54A08D232892F69500D22B1E /* CarsStack */ = {
+			isa = PBXGroup;
+			children = (
+				54A08D252892F6D200D22B1E /* CarsCoordinator.swift */,
+				54A08D292892F6FE00D22B1E /* CarsViewController.swift */,
+				54A08D272892F6E200D22B1E /* CarsViewModel.swift */,
+				5450D47E2899AF9E0020FB3F /* CarsTableViewCell.swift */,
+				5450D483289AE0510020FB3F /* DetailCar */,
+			);
+			path = CarsStack;
+			sourceTree = "<group>";
+		};
+		54A08D242892F6AC00D22B1E /* StationsStack */ = {
+			isa = PBXGroup;
+			children = (
+				54A08D31289303AD00D22B1E /* StationsCoordinator.swift */,
+				54A08D2D2893038900D22B1E /* StationsViewController.swift */,
+				54A08D2F2893039C00D22B1E /* StationsViewModel.swift */,
+				547DE17B289D5F69003ED4ED /* StationsTableViewCell.swift */,
+				547DE17D289D83C5003ED4ED /* DetailStation */,
+			);
+			path = StationsStack;
+			sourceTree = "<group>";
+		};
+		54A08D332893343A00D22B1E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				54A08D422893512700D22B1E /* schema.json */,
+				54A08D452893538100D22B1E /* API.swift */,
+				54A08D432893530B00D22B1E /* ListCars.graphql */,
+				54A08D472893545A00D22B1E /* Network.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		54A08CEA2892ECA200D22B1E /* ElectriCars */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54A08D152892ECA500D22B1E /* Build configuration list for PBXNativeTarget "ElectriCars" */;
+			buildPhases = (
+				54A08D4128934FFF00D22B1E /* Apollo */,
+				54A08CE72892ECA200D22B1E /* Sources */,
+				54A08CE82892ECA200D22B1E /* Frameworks */,
+				54A08CE92892ECA200D22B1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ElectriCars;
+			packageProductDependencies = (
+				54A08D3D28934FB200D22B1E /* Apollo */,
+				54A08D3F28934FB200D22B1E /* ApolloWebSocket */,
+				5450D4812899BBF70020FB3F /* AlamofireImage */,
+			);
+			productName = ElectriCars;
+			productReference = 54A08CEB2892ECA200D22B1E /* ElectriCars.app */;
+			productType = "com.apple.product-type.application";
+		};
+		54A08D002892ECA500D22B1E /* ElectriCarsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54A08D182892ECA500D22B1E /* Build configuration list for PBXNativeTarget "ElectriCarsTests" */;
+			buildPhases = (
+				54A08CFD2892ECA500D22B1E /* Sources */,
+				54A08CFE2892ECA500D22B1E /* Frameworks */,
+				54A08CFF2892ECA500D22B1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				54A08D032892ECA500D22B1E /* PBXTargetDependency */,
+			);
+			name = ElectriCarsTests;
+			productName = ElectriCarsTests;
+			productReference = 54A08D012892ECA500D22B1E /* ElectriCarsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		54A08D0A2892ECA500D22B1E /* ElectriCarsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54A08D1B2892ECA500D22B1E /* Build configuration list for PBXNativeTarget "ElectriCarsUITests" */;
+			buildPhases = (
+				54A08D072892ECA500D22B1E /* Sources */,
+				54A08D082892ECA500D22B1E /* Frameworks */,
+				54A08D092892ECA500D22B1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				54A08D0D2892ECA500D22B1E /* PBXTargetDependency */,
+			);
+			name = ElectriCarsUITests;
+			productName = ElectriCarsUITests;
+			productReference = 54A08D0B2892ECA500D22B1E /* ElectriCarsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		54A08CE32892ECA100D22B1E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					54A08CEA2892ECA200D22B1E = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					54A08D002892ECA500D22B1E = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 54A08CEA2892ECA200D22B1E;
+					};
+					54A08D0A2892ECA500D22B1E = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 54A08CEA2892ECA200D22B1E;
+					};
+				};
+			};
+			buildConfigurationList = 54A08CE62892ECA100D22B1E /* Build configuration list for PBXProject "ElectriCars" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 54A08CE22892ECA100D22B1E;
+			packageReferences = (
+				54A08D3C28934FB200D22B1E /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				5450D4802899BBF70020FB3F /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+			);
+			productRefGroup = 54A08CEC2892ECA200D22B1E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				54A08CEA2892ECA200D22B1E /* ElectriCars */,
+				54A08D002892ECA500D22B1E /* ElectriCarsTests */,
+				54A08D0A2892ECA500D22B1E /* ElectriCarsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		54A08CE92892ECA200D22B1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54A08CFB2892ECA500D22B1E /* LaunchScreen.storyboard in Resources */,
+				54A08CF82892ECA500D22B1E /* Assets.xcassets in Resources */,
+				54A08D442893530B00D22B1E /* ListCars.graphql in Resources */,
+				54A08CF62892ECA200D22B1E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54A08CFF2892ECA500D22B1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54A08D092892ECA500D22B1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		54A08D4128934FFF00D22B1E /* Apollo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Apollo;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\n# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://api.chargetrip.io/graphql\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		54A08CE72892ECA200D22B1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54A08D282892F6E200D22B1E /* CarsViewModel.swift in Sources */,
+				54A08D222892F2CC00D22B1E /* TabCoordinator.swift in Sources */,
+				54A08D202892ED0C00D22B1E /* AppCoordinator.swift in Sources */,
+				54A08D2E2893038900D22B1E /* StationsViewController.swift in Sources */,
+				547DE181289D841B003ED4ED /* DetailStationViewModel.swift in Sources */,
+				54A08D2A2892F6FE00D22B1E /* CarsViewController.swift in Sources */,
+				545BAD8328A3056800DEAE19 /* AddReviewViewModel.swift in Sources */,
+				54A08D482893545A00D22B1E /* Network.swift in Sources */,
+				547DE17C289D5F69003ED4ED /* StationsTableViewCell.swift in Sources */,
+				54A08D32289303AD00D22B1E /* StationsCoordinator.swift in Sources */,
+				54A08D462893538100D22B1E /* API.swift in Sources */,
+				54A08CEF2892ECA200D22B1E /* AppDelegate.swift in Sources */,
+				54A08D2C2892F79600D22B1E /* Screens.swift in Sources */,
+				54A08D302893039C00D22B1E /* StationsViewModel.swift in Sources */,
+				545BAD8128A2D9AD00DEAE19 /* AddReviewViewController.swift in Sources */,
+				547DE17F289D8405003ED4ED /* DetailStationViewController.swift in Sources */,
+				54A08CF12892ECA200D22B1E /* SceneDelegate.swift in Sources */,
+				5450D485289AE0D20020FB3F /* DetailCarViewModel.swift in Sources */,
+				54A08D35289336C200D22B1E /* DetailCarViewController.swift in Sources */,
+				5450D47F2899AF9E0020FB3F /* CarsTableViewCell.swift in Sources */,
+				545BAD8528A3FD1C00DEAE19 /* ReviewTableViewCell.swift in Sources */,
+				54A08D262892F6D200D22B1E /* CarsCoordinator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54A08CFD2892ECA500D22B1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54A08D062892ECA500D22B1E /* ElectriCarsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54A08D072892ECA500D22B1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54A08D122892ECA500D22B1E /* ElectriCarsUITestsLaunchTests.swift in Sources */,
+				54A08D102892ECA500D22B1E /* ElectriCarsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		54A08D032892ECA500D22B1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 54A08CEA2892ECA200D22B1E /* ElectriCars */;
+			targetProxy = 54A08D022892ECA500D22B1E /* PBXContainerItemProxy */;
+		};
+		54A08D0D2892ECA500D22B1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 54A08CEA2892ECA200D22B1E /* ElectriCars */;
+			targetProxy = 54A08D0C2892ECA500D22B1E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		54A08CF42892ECA200D22B1E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				54A08CF52892ECA200D22B1E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		54A08CF92892ECA500D22B1E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				54A08CFA2892ECA500D22B1E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		54A08D132892ECA500D22B1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		54A08D142892ECA500D22B1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		54A08D162892ECA500D22B1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T98YKXK5TT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ElectriCars/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zemoga.ElectriCars;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		54A08D172892ECA500D22B1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T98YKXK5TT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ElectriCars/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zemoga.ElectriCars;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		54A08D192892ECA500D22B1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T98YKXK5TT;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zemoga.ElectriCarsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ElectriCars.app/ElectriCars";
+			};
+			name = Debug;
+		};
+		54A08D1A2892ECA500D22B1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T98YKXK5TT;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zemoga.ElectriCarsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ElectriCars.app/ElectriCars";
+			};
+			name = Release;
+		};
+		54A08D1C2892ECA500D22B1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T98YKXK5TT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zemoga.ElectriCarsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ElectriCars;
+			};
+			name = Debug;
+		};
+		54A08D1D2892ECA500D22B1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T98YKXK5TT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zemoga.ElectriCarsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ElectriCars;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		54A08CE62892ECA100D22B1E /* Build configuration list for PBXProject "ElectriCars" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54A08D132892ECA500D22B1E /* Debug */,
+				54A08D142892ECA500D22B1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		54A08D152892ECA500D22B1E /* Build configuration list for PBXNativeTarget "ElectriCars" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54A08D162892ECA500D22B1E /* Debug */,
+				54A08D172892ECA500D22B1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		54A08D182892ECA500D22B1E /* Build configuration list for PBXNativeTarget "ElectriCarsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54A08D192892ECA500D22B1E /* Debug */,
+				54A08D1A2892ECA500D22B1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		54A08D1B2892ECA500D22B1E /* Build configuration list for PBXNativeTarget "ElectriCarsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54A08D1C2892ECA500D22B1E /* Debug */,
+				54A08D1D2892ECA500D22B1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5450D4802899BBF70020FB3F /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
+		54A08D3C28934FB200D22B1E /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.52.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5450D4812899BBF70020FB3F /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5450D4802899BBF70020FB3F /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
+		54A08D3D28934FB200D22B1E /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54A08D3C28934FB200D22B1E /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+		54A08D3F28934FB200D22B1E /* ApolloWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54A08D3C28934FB200D22B1E /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloWebSocket;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 54A08CE32892ECA100D22B1E /* Project object */;
+}

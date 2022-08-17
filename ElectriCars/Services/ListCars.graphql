@@ -1,0 +1,45 @@
+query CarList($size: Int) {
+  carList(size: $size) {
+    id
+    naming {
+      make
+      model
+      chargetrip_version
+    }
+    media {
+      image {
+        url
+      }
+      brand {
+        url
+      }
+    }
+  }
+}
+
+
+query StationList {
+  stationList {
+    name
+    address
+    city
+    country
+    location {
+      coordinates
+    }
+    opening_times {
+      regular_hours {
+        weekday
+        period_begin
+        period_end
+      }
+    }
+  }
+}
+
+mutation AddReview($review: ReviewAdd!) {
+  addReview(review: $review) {
+    rating
+    message
+  }
+}
