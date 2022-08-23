@@ -63,7 +63,7 @@ extension CarsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        viewModel?.goToDetail(car: viewModel?.cars[indexPath.row])
+//        viewModel?.goToDetail(car: viewModel?.cars[indexPath.row])
     }
 }
 
@@ -73,7 +73,7 @@ extension CarsViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CarsTableViewCell.identifier, for: indexPath) as? CarsTableViewCell else {
             return UITableViewCell()
         }
-        cell.cars = viewModel?.cars[indexPath.row]
+        cell.car = viewModel?.cars[indexPath.row]
 
         return cell
         

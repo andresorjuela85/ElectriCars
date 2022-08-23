@@ -39,6 +39,7 @@
 		54A08D442893530B00D22B1E /* ListCars.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 54A08D432893530B00D22B1E /* ListCars.graphql */; };
 		54A08D462893538100D22B1E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D452893538100D22B1E /* API.swift */; };
 		54A08D482893545A00D22B1E /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D472893545A00D22B1E /* Network.swift */; };
+		5C1CAA8928B40B8C00DEFF2C /* CarList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1CAA8828B40B8C00DEFF2C /* CarList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		54A08D432893530B00D22B1E /* ListCars.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ListCars.graphql; sourceTree = "<group>"; };
 		54A08D452893538100D22B1E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = ElectriCars/API.swift; sourceTree = SOURCE_ROOT; };
 		54A08D472893545A00D22B1E /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		5C1CAA8828B40B8C00DEFF2C /* CarList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,12 +237,21 @@
 		54A08D332893343A00D22B1E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5C1CAA8728B40B5E00DEFF2C /* Model */,
 				54A08D422893512700D22B1E /* schema.json */,
 				54A08D452893538100D22B1E /* API.swift */,
 				54A08D432893530B00D22B1E /* ListCars.graphql */,
 				54A08D472893545A00D22B1E /* Network.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		5C1CAA8728B40B5E00DEFF2C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5C1CAA8828B40B8C00DEFF2C /* CarList.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,6 +426,7 @@
 				545BAD8328A3056800DEAE19 /* AddReviewViewModel.swift in Sources */,
 				54A08D482893545A00D22B1E /* Network.swift in Sources */,
 				547DE17C289D5F69003ED4ED /* StationsTableViewCell.swift in Sources */,
+				5C1CAA8928B40B8C00DEFF2C /* CarList.swift in Sources */,
 				54A08D32289303AD00D22B1E /* StationsCoordinator.swift in Sources */,
 				54A08D462893538100D22B1E /* API.swift in Sources */,
 				54A08CEF2892ECA200D22B1E /* AppDelegate.swift in Sources */,
@@ -604,7 +616,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T98YKXK5TT;
+				DEVELOPMENT_TEAM = QS35EX2LJE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ElectriCars/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -612,12 +624,13 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zemoga.ElectriCars;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miguelorjuela.ElectriCars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -632,7 +645,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T98YKXK5TT;
+				DEVELOPMENT_TEAM = QS35EX2LJE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ElectriCars/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -640,12 +653,13 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zemoga.ElectriCars;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miguelorjuela.ElectriCars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

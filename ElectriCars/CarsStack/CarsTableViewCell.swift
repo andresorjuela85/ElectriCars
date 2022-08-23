@@ -16,21 +16,21 @@ class CarsTableViewCell: UITableViewCell {
     private var brandLabel = UILabel()
     private var nameLabel = UILabel()
     
-    var cars: CarListQuery.Data.CarList? {
+    var car: Car? {
         
         didSet {
-            if let make = cars?.naming?.make {
+            if let make = car?.make {
                 brandLabel.text = make
                 brandLabel.textColor = .white
             }
             
-            if let name = cars?.naming?.model {
+            if let name = car?.model {
                 nameLabel.text = name
                 nameLabel.textColor = .white
                 nameLabel.font = .boldSystemFont(ofSize: 17)
             }
             
-            if let image = cars?.media?.image?.url {
+            if let image = car?.imageUrl {
                 let url = URL(string: image)!
                 carImage.af.setImage(withURL: url)
             }
