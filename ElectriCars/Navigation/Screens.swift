@@ -8,39 +8,41 @@
 import Foundation
 import UIKit
 
-class Screens {
+final class Screens {
     
     func createCarsViewController(coordinator: CarsCoordinator) -> UIViewController {
         let viewController = CarsViewController()
-        let viewModel = CarsViewModel(coordinator: coordinator, viewController: viewController)
+        let viewModel = CarsViewModel(let: coordinator, let: viewController)
         viewController.viewModel = viewModel
         return viewController
     }
     
     func createStationsViewController(coordinator: StationsCoordinator) -> UIViewController {
         let viewController = StationsViewController()
-        let viewModel = StationsViewModel(coordinator: coordinator, viewController: viewController)
+        let viewModel = StationsViewModel(let: coordinator, let: viewController)
         viewController.viewModel = viewModel
         return viewController
     }
     
-    func createDetailCarViewController(car: CarListQuery.Data.CarList?) -> UIViewController {
+    func createDetailCarViewController(car: Car) -> UIViewController {
         let viewController = DetailCarViewController()
         let viewModel = DetailCarViewModel(car: car)
         viewController.viewModel = viewModel
         return viewController
     }
     
-    func createDetailStationViewController(station: StationListQuery.Data.StationList?, coordinator: StationsCoordinator) -> UIViewController {
+    func createDetailStationViewController(station: Station, coordinator: StationsCoordinator) -> UIViewController {
         let viewController = DetailStationViewController()
-        let viewModel = DetailStationViewModel(station: station, coordinator: coordinator)
+        let viewModel = DetailStationViewModel(station: station, coordinator: coordinator, viewController: viewController)
         viewController.viewModel = viewModel
         return viewController
     }
     
-    func createAddReviewViewController() -> UIViewController {
+    func createAddReviewViewController(stationId: String, delegate: AddReviewDelegate?) -> UIViewController {
         let viewController = AddReviewViewController()
-        
+        viewController.delegate = delegate
+        let viewModel = AddReviewViewModel(stationId: stationId)
+        viewController.viewModel = viewModel
         return viewController
     }
 }

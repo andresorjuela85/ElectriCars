@@ -399,6 +399,114 @@ public struct ReviewTagsInput: GraphQLMapConvertible {
   }
 }
 
+public final class AddReviewMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation AddReview($review: ReviewAdd!) {
+      addReview(review: $review) {
+        __typename
+        rating
+        message
+      }
+    }
+    """
+
+  public let operationName: String = "AddReview"
+
+  public var review: ReviewAdd
+
+  public init(review: ReviewAdd) {
+    self.review = review
+  }
+
+  public var variables: GraphQLMap? {
+    return ["review": review]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("addReview", arguments: ["review": GraphQLVariable("review")], type: .nonNull(.object(AddReview.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(addReview: AddReview) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "addReview": addReview.resultMap])
+    }
+
+    /// Add a new review.
+    /// If the `x-token` header is send for a valid user, the review will belong to it, otherwise will be added for an anonymouse user
+    public var addReview: AddReview {
+      get {
+        return AddReview(unsafeResultMap: resultMap["addReview"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "addReview")
+      }
+    }
+
+    public struct AddReview: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["Review"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("rating", type: .scalar(Int.self)),
+          GraphQLField("message", type: .scalar(String.self)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(rating: Int? = nil, message: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Review", "rating": rating, "message": message])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// Rating of a review
+      public var rating: Int? {
+        get {
+          return resultMap["rating"] as? Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "rating")
+        }
+      }
+
+      /// Message of a review
+      public var message: String? {
+        get {
+          return resultMap["message"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "message")
+        }
+      }
+    }
+  }
+}
+
 public final class CarListQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
@@ -413,22 +521,18 @@ public final class CarListQuery: GraphQLQuery {
           model
           chargetrip_version
         }
-        media {
-          __typename
-          image {
-            __typename
-            url
-          }
-          brand {
-            __typename
-            url
-          }
-        }
+        ...mediaURL
       }
     }
     """
 
   public let operationName: String = "CarList"
+
+  public var queryDocument: String {
+    var document: String = operationDefinition
+    document.append("\n" + MediaUrl.fragmentDefinition)
+    return document
+  }
 
   public var size: Int?
 
@@ -477,7 +581,7 @@ public final class CarListQuery: GraphQLQuery {
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("id", type: .scalar(GraphQLID.self)),
           GraphQLField("naming", type: .object(Naming.selections)),
-          GraphQLField("media", type: .object(Medium.selections)),
+          GraphQLFragmentSpread(MediaUrl.self),
         ]
       }
 
@@ -485,10 +589,6 @@ public final class CarListQuery: GraphQLQuery {
 
       public init(unsafeResultMap: ResultMap) {
         self.resultMap = unsafeResultMap
-      }
-
-      public init(id: GraphQLID? = nil, naming: Naming? = nil, media: Medium? = nil) {
-        self.init(unsafeResultMap: ["__typename": "CarList", "id": id, "naming": naming.flatMap { (value: Naming) -> ResultMap in value.resultMap }, "media": media.flatMap { (value: Medium) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -520,13 +620,29 @@ public final class CarListQuery: GraphQLQuery {
         }
       }
 
-      /// Media of a car
-      public var media: Medium? {
+      public var fragments: Fragments {
         get {
-          return (resultMap["media"] as? ResultMap).flatMap { Medium(unsafeResultMap: $0) }
+          return Fragments(unsafeResultMap: resultMap)
         }
         set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "media")
+          resultMap += newValue.resultMap
+        }
+      }
+
+      public struct Fragments {
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var mediaUrl: MediaUrl {
+          get {
+            return MediaUrl(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
         }
       }
 
@@ -591,135 +707,111 @@ public final class CarListQuery: GraphQLQuery {
           }
         }
       }
+    }
+  }
+}
 
-      public struct Medium: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["CarListMedia"]
+public final class ReviewListQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query ReviewList($stationId: ID!) {
+      reviewList(stationId: $stationId) {
+        __typename
+        rating
+        message
+      }
+    }
+    """
 
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("image", type: .object(Image.selections)),
-            GraphQLField("brand", type: .object(Brand.selections)),
-          ]
+  public let operationName: String = "ReviewList"
+
+  public var stationId: GraphQLID
+
+  public init(stationId: GraphQLID) {
+    self.stationId = stationId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["stationId": stationId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("reviewList", arguments: ["stationId": GraphQLVariable("stationId")], type: .list(.nonNull(.object(ReviewList.selections)))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(reviewList: [ReviewList]? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "reviewList": reviewList.flatMap { (value: [ReviewList]) -> [ResultMap] in value.map { (value: ReviewList) -> ResultMap in value.resultMap } }])
+    }
+
+    /// Get all reviews of a station by the station ID
+    public var reviewList: [ReviewList]? {
+      get {
+        return (resultMap["reviewList"] as? [ResultMap]).flatMap { (value: [ResultMap]) -> [ReviewList] in value.map { (value: ResultMap) -> ReviewList in ReviewList(unsafeResultMap: value) } }
+      }
+      set {
+        resultMap.updateValue(newValue.flatMap { (value: [ReviewList]) -> [ResultMap] in value.map { (value: ReviewList) -> ResultMap in value.resultMap } }, forKey: "reviewList")
+      }
+    }
+
+    public struct ReviewList: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["Review"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("rating", type: .scalar(Int.self)),
+          GraphQLField("message", type: .scalar(String.self)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(rating: Int? = nil, message: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Review", "rating": rating, "message": message])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
         }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
         }
+      }
 
-        public init(image: Image? = nil, brand: Brand? = nil) {
-          self.init(unsafeResultMap: ["__typename": "CarListMedia", "image": image.flatMap { (value: Image) -> ResultMap in value.resultMap }, "brand": brand.flatMap { (value: Brand) -> ResultMap in value.resultMap }])
+      /// Rating of a review
+      public var rating: Int? {
+        get {
+          return resultMap["rating"] as? Int
         }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
+        set {
+          resultMap.updateValue(newValue, forKey: "rating")
         }
+      }
 
-        /// Latest image of the car
-        public var image: Image? {
-          get {
-            return (resultMap["image"] as? ResultMap).flatMap { Image(unsafeResultMap: $0) }
-          }
-          set {
-            resultMap.updateValue(newValue?.resultMap, forKey: "image")
-          }
+      /// Message of a review
+      public var message: String? {
+        get {
+          return resultMap["message"] as? String
         }
-
-        /// Latest maker logo of the car
-        public var brand: Brand? {
-          get {
-            return (resultMap["brand"] as? ResultMap).flatMap { Brand(unsafeResultMap: $0) }
-          }
-          set {
-            resultMap.updateValue(newValue?.resultMap, forKey: "brand")
-          }
-        }
-
-        public struct Image: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["CarImage"]
-
-          public static var selections: [GraphQLSelection] {
-            return [
-              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("url", type: .scalar(String.self)),
-            ]
-          }
-
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public init(url: String? = nil) {
-            self.init(unsafeResultMap: ["__typename": "CarImage", "url": url])
-          }
-
-          public var __typename: String {
-            get {
-              return resultMap["__typename"]! as! String
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "__typename")
-            }
-          }
-
-          /// Full path URL of a large image
-          public var url: String? {
-            get {
-              return resultMap["url"] as? String
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "url")
-            }
-          }
-        }
-
-        public struct Brand: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["CarImage"]
-
-          public static var selections: [GraphQLSelection] {
-            return [
-              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("url", type: .scalar(String.self)),
-            ]
-          }
-
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public init(url: String? = nil) {
-            self.init(unsafeResultMap: ["__typename": "CarImage", "url": url])
-          }
-
-          public var __typename: String {
-            get {
-              return resultMap["__typename"]! as! String
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "__typename")
-            }
-          }
-
-          /// Full path URL of a large image
-          public var url: String? {
-            get {
-              return resultMap["url"] as? String
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "url")
-            }
-          }
+        set {
+          resultMap.updateValue(newValue, forKey: "message")
         }
       }
     }
@@ -733,6 +825,7 @@ public final class StationListQuery: GraphQLQuery {
     query StationList {
       stationList {
         __typename
+        id
         name
         address
         city
@@ -794,6 +887,7 @@ public final class StationListQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("name", type: .scalar(String.self)),
           GraphQLField("address", type: .scalar(String.self)),
           GraphQLField("city", type: .scalar(String.self)),
@@ -809,8 +903,8 @@ public final class StationListQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(name: String? = nil, address: String? = nil, city: String? = nil, country: String? = nil, location: Location? = nil, openingTimes: OpeningTime? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Station", "name": name, "address": address, "city": city, "country": country, "location": location.flatMap { (value: Location) -> ResultMap in value.resultMap }, "opening_times": openingTimes.flatMap { (value: OpeningTime) -> ResultMap in value.resultMap }])
+      public init(id: GraphQLID, name: String? = nil, address: String? = nil, city: String? = nil, country: String? = nil, location: Location? = nil, openingTimes: OpeningTime? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Station", "id": id, "name": name, "address": address, "city": city, "country": country, "location": location.flatMap { (value: Location) -> ResultMap in value.resultMap }, "opening_times": openingTimes.flatMap { (value: OpeningTime) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -819,6 +913,16 @@ public final class StationListQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// Unique ID of a station
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
         }
       }
 
@@ -1027,37 +1131,72 @@ public final class StationListQuery: GraphQLQuery {
   }
 }
 
-public final class AddReviewMutation: GraphQLMutation {
-  /// The raw GraphQL definition of this operation.
-  public let operationDefinition: String =
+public struct MediaUrl: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
     """
-    mutation AddReview($review: ReviewAdd!) {
-      addReview(review: $review) {
+    fragment mediaURL on CarList {
+      __typename
+      media {
         __typename
-        rating
-        message
+        image {
+          __typename
+          url
+        }
+        brand {
+          __typename
+          url
+        }
       }
     }
     """
 
-  public let operationName: String = "AddReview"
+  public static let possibleTypes: [String] = ["CarList"]
 
-  public var review: ReviewAdd
-
-  public init(review: ReviewAdd) {
-    self.review = review
+  public static var selections: [GraphQLSelection] {
+    return [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("media", type: .object(Medium.selections)),
+    ]
   }
 
-  public var variables: GraphQLMap? {
-    return ["review": review]
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
   }
 
-  public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
+  public init(media: Medium? = nil) {
+    self.init(unsafeResultMap: ["__typename": "CarList", "media": media.flatMap { (value: Medium) -> ResultMap in value.resultMap }])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  /// Media of a car
+  public var media: Medium? {
+    get {
+      return (resultMap["media"] as? ResultMap).flatMap { Medium(unsafeResultMap: $0) }
+    }
+    set {
+      resultMap.updateValue(newValue?.resultMap, forKey: "media")
+    }
+  }
+
+  public struct Medium: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["CarListMedia"]
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("addReview", arguments: ["review": GraphQLVariable("review")], type: .nonNull(.object(AddReview.selections))),
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("image", type: .object(Image.selections)),
+        GraphQLField("brand", type: .object(Brand.selections)),
       ]
     }
 
@@ -1067,29 +1206,46 @@ public final class AddReviewMutation: GraphQLMutation {
       self.resultMap = unsafeResultMap
     }
 
-    public init(addReview: AddReview) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "addReview": addReview.resultMap])
+    public init(image: Image? = nil, brand: Brand? = nil) {
+      self.init(unsafeResultMap: ["__typename": "CarListMedia", "image": image.flatMap { (value: Image) -> ResultMap in value.resultMap }, "brand": brand.flatMap { (value: Brand) -> ResultMap in value.resultMap }])
     }
 
-    /// Add a new review.
-    /// If the `x-token` header is send for a valid user, the review will belong to it, otherwise will be added for an anonymouse user
-    public var addReview: AddReview {
+    public var __typename: String {
       get {
-        return AddReview(unsafeResultMap: resultMap["addReview"]! as! ResultMap)
+        return resultMap["__typename"]! as! String
       }
       set {
-        resultMap.updateValue(newValue.resultMap, forKey: "addReview")
+        resultMap.updateValue(newValue, forKey: "__typename")
       }
     }
 
-    public struct AddReview: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["Review"]
+    /// Latest image of the car
+    public var image: Image? {
+      get {
+        return (resultMap["image"] as? ResultMap).flatMap { Image(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "image")
+      }
+    }
+
+    /// Latest maker logo of the car
+    public var brand: Brand? {
+      get {
+        return (resultMap["brand"] as? ResultMap).flatMap { Brand(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "brand")
+      }
+    }
+
+    public struct Image: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["CarImage"]
 
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("rating", type: .scalar(Int.self)),
-          GraphQLField("message", type: .scalar(String.self)),
+          GraphQLField("url", type: .scalar(String.self)),
         ]
       }
 
@@ -1099,8 +1255,8 @@ public final class AddReviewMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public init(rating: Int? = nil, message: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Review", "rating": rating, "message": message])
+      public init(url: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "CarImage", "url": url])
       }
 
       public var __typename: String {
@@ -1112,23 +1268,53 @@ public final class AddReviewMutation: GraphQLMutation {
         }
       }
 
-      /// Rating of a review
-      public var rating: Int? {
+      /// Full path URL of a large image
+      public var url: String? {
         get {
-          return resultMap["rating"] as? Int
+          return resultMap["url"] as? String
         }
         set {
-          resultMap.updateValue(newValue, forKey: "rating")
+          resultMap.updateValue(newValue, forKey: "url")
+        }
+      }
+    }
+
+    public struct Brand: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["CarImage"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("url", type: .scalar(String.self)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(url: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "CarImage", "url": url])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
         }
       }
 
-      /// Message of a review
-      public var message: String? {
+      /// Full path URL of a large image
+      public var url: String? {
         get {
-          return resultMap["message"] as? String
+          return resultMap["url"] as? String
         }
         set {
-          resultMap.updateValue(newValue, forKey: "message")
+          resultMap.updateValue(newValue, forKey: "url")
         }
       }
     }

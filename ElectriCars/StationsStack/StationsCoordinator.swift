@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class StationsCoordinator {
+final class StationsCoordinator {
     
     private let presenter: UINavigationController
     
@@ -28,13 +28,13 @@ class StationsCoordinator {
         presenter.viewControllers = [viewController]
     }
     
-    func showStationDetail(station: StationListQuery.Data.StationList?) {
+    func showStationDetail(station: Station) {
         let viewController = screen.createDetailStationViewController(station: station, coordinator: self)
         presenter.pushViewController(viewController, animated: true)
     }
     
-    func showAddReview() {
-        let viewController = screen.createAddReviewViewController()
+    func showAddReview(stationId: String, delegate: AddReviewDelegate?) {
+        let viewController = screen.createAddReviewViewController(stationId: stationId, delegate: delegate)
         presenter.present(viewController, animated: true)
     }
 }

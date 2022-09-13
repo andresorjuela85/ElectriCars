@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AppCoordinator {
+final class AppCoordinator {
     
     private var sceneDelegate: SceneDelegate
     

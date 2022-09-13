@@ -1,0 +1,6 @@
+mutation AddReview($review: ReviewAdd!) {
+  addReview(review: $review) {
+    rating
+    message
+  }
+}

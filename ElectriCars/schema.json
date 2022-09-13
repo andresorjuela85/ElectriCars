@@ -7990,7 +7990,7 @@
       {
         "kind": "ENUM",
         "name": "BatteryInputType",
-        "description": "The type of the batter value",
+        "description": "The type of the battery value",
         "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
@@ -14236,6 +14236,18 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "telemetry",
+            "description": "Telemetry data used to overwrite routing parameters",
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -15035,6 +15047,18 @@
             "type": {
               "kind": "OBJECT",
               "name": "RequestEv",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "telemetry",
+            "description": "Route telemetry data",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON",
               "ofType": null
             },
             "isDeprecated": false,
@@ -17493,7 +17517,7 @@
           },
           {
             "name": "consumption",
-            "description": "Total enery used in a step in kWh",
+            "description": "Total energy used in a step in kWh",
             "args": [],
             "type": {
               "kind": "SCALAR",

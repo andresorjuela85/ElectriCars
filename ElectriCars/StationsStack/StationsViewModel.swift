@@ -7,46 +7,40 @@
 
 import Foundation
 
-protocol StationsViewControllerDelegate {
+protocol StationsViewModelDelegate {
     
-    var station: [StationListQuery.Data.StationList?] { get set }
+    var stations: [Station] { get set }
     
     func loadStations()
     
+    func goToDetail (station: Station)
 }
 
-
-class StationsViewModel {
+final class StationsViewModel: StationsViewModelDelegate {
     
     var coordinator: StationsCoordinator
-    var viewController: StationcViewControllerDelegate
+    var viewController: StationViewControllerDelegate
     
-    var station = [StationListQuery.Data.StationList?]()
+    var stations: [Station] = []
     
-    init (coordinator: StationsCoordinator, viewController: StationcViewControllerDelegate) {
+    let service = Services(network: Network())
+    
+    init (`let` coordinator: StationsCoordinator, `let` viewController: StationViewControllerDelegate) {
         self.coordinator = coordinator
-        self .viewController = viewController
+        self.viewController = viewController
     }
     
-    func goToDetail (station: StationListQuery.Data.StationList?) {
+    func goToDetail (station: Station) {
         coordinator.showStationDetail(station: station)
     }
     
     func loadStations() {
         
-        Network.shared.apollo.fetch(query: StationListQuery()) { result in
-            
-            switch result {
-                
-            case .success(let graphQLResult):
-                if let stationConnection = graphQLResult.data?.stationList {
-                    self.station = stationConnection
-                    self.viewController.reloadTable()
-                }
-                
-            case .failure(let error):
-                print("Error: \(error)")
-            }
+        service.getStations { stationReceived in
+            self.stations = stationReceived
+            self.viewController.reloadTable()
+//            print(self.stations)
         }
+        
     }
 }

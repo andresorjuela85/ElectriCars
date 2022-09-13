@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabCoordinator {
+final class TabCoordinator {
     
     private let presenter: UIWindow
     
@@ -28,7 +28,7 @@ class TabCoordinator {
         tabBarController.setViewControllers([vc1, vc2], animated: false)
         tabBarController.tabBarItem.title = "ElectriCars"
         tabBarController.tabBar.tintColor = .black
-        tabBarController.tabBar.barTintColor = .darkGray
+        tabBarController.tabBar.barTintColor = .white
         tabBarController.tabBar.backgroundColor = .white
         vc1.title = "ElectriCars"
         vc2.title = "Stations"
@@ -41,7 +41,6 @@ class TabCoordinator {
         for x in 0...items.count - 1 {
             items[x].image = UIImage(systemName: images[x])
             items[x].title = names[x]
-
         }
     }
     

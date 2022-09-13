@@ -7,27 +7,26 @@
 
 import UIKit
 
-class StationsTableViewCell: UITableViewCell {
-
-    static let identifier = "StationsTableViewCell"
+final class StationsTableViewCell: UITableViewCell {
+    
+    static let identifier = String(describing: StationsTableViewCell.self)
     
     private var stationLabel = UILabel()
     private var adressLabel = UILabel()
     private var cityLabel = UILabel()
     
-    var station: StationListQuery.Data.StationList? {
+    var station: Station? {
         
         didSet {
             if let name = station?.name {
                 stationLabel.text = name
                 stationLabel.textColor = .white
-                stationLabel.font = .boldSystemFont(ofSize: 17)
+                stationLabel.font = .boldSystemFont(ofSize: 18)
             }
             
             if let adress = station?.address {
                 adressLabel.text = adress
                 adressLabel.textColor = .white
-                
             }
             
             if let city = station?.city {
@@ -53,11 +52,33 @@ class StationsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Subviews constraints
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        stationLabel.frame = CGRect(x: 10, y: 10, width: 250, height: 25)
-        adressLabel.frame = CGRect(x: 10, y: 40, width: 250, height: 20)
-        cityLabel.frame = CGRect(x: 10, y: 65, width: 250, height: 20)
+        
+        stationLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stationLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            stationLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 7/8),
+            stationLabel.heightAnchor.constraint(equalToConstant: 20),
+            stationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)
+        ])
+        
+        adressLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            adressLabel.topAnchor.constraint(equalTo: stationLabel.bottomAnchor, constant: 10),
+            adressLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 7/8),
+            adressLabel.heightAnchor.constraint(equalToConstant: 20),
+            adressLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)
+        ])
+        
+        cityLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cityLabel.topAnchor.constraint(equalTo: adressLabel.bottomAnchor, constant: 5),
+            cityLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 7/8),
+            cityLabel.heightAnchor.constraint(equalToConstant: 20),
+            cityLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)
+        ])
     }
 }

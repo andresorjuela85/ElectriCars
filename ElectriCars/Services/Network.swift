@@ -8,8 +8,13 @@
 import Foundation
 import Apollo
 
-class Network {
-    static let shared = Network()
+
+enum ServiceResponse<T> {
+    case success(response: T)
+    case failure(error: Error?)
+}
+
+final class Network {
 
     private(set) lazy var apollo: ApolloClient = {
 
@@ -30,7 +35,27 @@ class Network {
         return ApolloClient(networkTransport: requestChainTransport,
                             store: store1)
     }()
+    
+    func fetch<T: ModelProcessProtocol, Query: GraphQLQuery>(of type: T.Type, query: Query, completionHandler: @escaping (ServiceResponse<T>) -> Void) {
+        
+        apollo.fetch(query: query) { result in
+            
+            switch result {
+            case .success(let graphQLResult):
+                
+                if let data = graphQLResult.data {
+                    completionHandler(.success(response: T.processData(data)))
+                } else {
+                    completionHandler(.failure(error: nil))
+                }
+                
+            case .failure(let error):
+                completionHandler(.failure(error: error))
+            }
+        }
+    }
 }
+
 class NetworkInterceptorProvider: DefaultInterceptorProvider {
     override func interceptors<Operation: GraphQLOperation>(for operation: Operation) -> [ApolloInterceptor] {
         var interceptors = super.interceptors(for: operation)

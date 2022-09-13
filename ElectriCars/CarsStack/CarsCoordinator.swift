@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CarsCoordinator {
+final class CarsCoordinator {
     
     private let presenter: UINavigationController
     
@@ -28,9 +28,8 @@ class CarsCoordinator {
         presenter.viewControllers = [viewController]
     }
     
-    func showDetail(car: CarListQuery.Data.CarList?) {
+    func showDetail(car: Car) {
         let viewController = screen.createDetailCarViewController(car: car)
         presenter.pushViewController(viewController, animated: true)
     }
-    
 }

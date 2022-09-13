@@ -1,0 +1,6 @@
+query ReviewList($stationId: ID!) {
+  reviewList(stationId: $stationId) {
+    rating
+    message
+  }
+}

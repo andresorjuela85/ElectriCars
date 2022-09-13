@@ -7,11 +7,11 @@
 
 import Foundation
 
-class DetailCarViewModel {
+final class DetailCarViewModel {
  
-    let car: CarListQuery.Data.CarList?
+    let car: Car
     
-    init(car: CarListQuery.Data.CarList?) {
+    init(car: Car) {
         self.car = car
     }
     

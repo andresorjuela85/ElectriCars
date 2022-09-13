@@ -6,40 +6,17 @@ query CarList($size: Int) {
       model
       chargetrip_version
     }
-    media {
-      image {
-        url
-      }
-      brand {
-        url
-      }
-    }
+    ...mediaURL
   }
 }
 
-
-query StationList {
-  stationList {
-    name
-    address
-    city
-    country
-    location {
-      coordinates
+fragment mediaURL on CarList {
+  media {
+    image {
+      url
     }
-    opening_times {
-      regular_hours {
-        weekday
-        period_begin
-        period_end
-      }
+    brand {
+      url
     }
-  }
-}
-
-mutation AddReview($review: ReviewAdd!) {
-  addReview(review: $review) {
-    rating
-    message
   }
 }

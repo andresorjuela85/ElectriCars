@@ -8,19 +8,43 @@
 import Foundation
 import CoreLocation
 
-class DetailStationViewModel {
+protocol DetailStationViewModelDelegate {
     
-    var station: StationListQuery.Data.StationList?
+    var station: Station? { get set }
+    var reviews: [Review] { get set }
+    func goToReview(delegate: AddReviewDelegate?)
+    func loadReviews()
+}
+
+final class DetailStationViewModel: DetailStationViewModelDelegate {
+    
+    var station: Station?
+    var reviews: [Review] = []
     var coordinator: StationsCoordinator
     
+    var viewController: DetailStationViewController
     
-    init(station: StationListQuery.Data.StationList?, coordinator: StationsCoordinator) {
+    let service = Services(network: Network())
+    
+    init(station: Station, coordinator: StationsCoordinator, viewController: DetailStationViewController) {
         self.station = station
         self.coordinator = coordinator
+        self.viewController = viewController
     }
     
-    func goToReview() {
-        coordinator.showAddReview()
+    func goToReview(delegate: AddReviewDelegate?) {
+        if let stationId = station?.id {
+        coordinator.showAddReview(stationId: stationId, delegate: delegate)
+        }
     }
     
+    func loadReviews() {
+        
+        if let id = station?.id {
+        service.getReviews(stationId: id) { reviewReceived in
+            self.reviews = reviewReceived
+            self.viewController.reloadTable()
+        }
+        }
+    }
 }

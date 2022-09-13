@@ -7,53 +7,55 @@
 
 import UIKit
 
-protocol StationcViewControllerDelegate {
+protocol StationViewControllerDelegate {
     
     func reloadTable()
 }
 
-
-class StationsViewController: UIViewController {
+final class StationsViewController: UIViewController {
 
     var viewModel: StationsViewModel?
     
-    let tableView = UITableView()
-    
-
-    let label = UILabel()
+    private let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundColor = .orange
+        navigationItem.title = "Stations"
         
         viewModel?.loadStations()
+        setupTable()
+    }
+    
+    func setupTable () {
         
-        
+        tableView.frame = view.bounds
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(StationsTableViewCell.self, forCellReuseIdentifier: StationsTableViewCell.identifier)
-        
-        navigationItem.title = "Station"
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
     }
 }
 
+extension StationsViewController: StationViewControllerDelegate {
+    
+    func reloadTable() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
+//MARK: Table configuration
 
 extension StationsViewController: UITableViewDelegate {
  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.station.count ?? 0
+        return viewModel?.stations.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel?.goToDetail(station: viewModel?.station[indexPath.row])
+        viewModel?.goToDetail(station: (viewModel?.stations[indexPath.row])!)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -69,16 +71,9 @@ extension StationsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.station = viewModel?.station[indexPath.row]
+        cell.station = viewModel?.stations[indexPath.row]
         return cell
     }
 }
 
-extension StationsViewController: StationcViewControllerDelegate {
-    
-    func reloadTable() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-}
+
