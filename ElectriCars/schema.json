@@ -1153,7 +1153,7 @@
           },
           {
             "name": "authorizeConnectedVehicle",
-            "description": "[BETA] Authorize a vehicle by providing the callback url from the connectivity provider which will be exchanged for access tokens",
+            "description": "[BETA] Authorize a connected vehicle",
             "args": [
               {
                 "name": "input",
@@ -1678,6 +1678,22 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "scope",
+            "description": "Scope",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "ConnectScope",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -1717,6 +1733,36 @@
         "inputFields": null,
         "interfaces": null,
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "ConnectScope",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "location",
+            "description": "Vehicle location, applicable for: Enode",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "charge_state",
+            "description": "Charge state, applicable for: Enode",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "odometer",
+            "description": "Odometer reading, applicable for: Enode",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -8385,7 +8431,7 @@
           },
           {
             "name": "properties",
-            "description": "Additional data",
+            "description": "Optional object where you can store custom data you need in your application. This extends the current functionalities we offer",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -10257,13 +10303,97 @@
       },
       {
         "kind": "OBJECT",
+        "name": "VehicleData",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "battery",
+            "description": "Battery data",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ConnectBattery",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "charge",
+            "description": "Charge data",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ConnectCharge",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "location",
+            "description": "Location data",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ConnectLocation",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "odometer",
+            "description": "Odometer data",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ConnectOdometer",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ConnectBattery",
         "description": null,
         "specifiedByUrl": null,
         "fields": [
           {
+            "name": "range",
+            "description": "Estimated range by OEM",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "percentage",
-            "description": null,
+            "description": "Percentage of the battery remaining",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "capacity",
+            "description": "Capacity of the battery, in kwh",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -10275,11 +10405,11 @@
           },
           {
             "name": "date",
-            "description": null,
+            "description": "Date when the battery data was retrieved, as ISO-8601 date",
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "DateTime",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10293,49 +10423,13 @@
       },
       {
         "kind": "OBJECT",
-        "name": "VehicleData",
-        "description": null,
-        "specifiedByUrl": null,
-        "fields": [
-          {
-            "name": "battery",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "ConnectBattery",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "location",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "VehicleLocation",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "VehicleLocation",
+        "name": "ConnectLocation",
         "description": "Location of the vehicle",
         "specifiedByUrl": null,
         "fields": [
           {
             "name": "type",
-            "description": null,
+            "description": "Feature type",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -10351,7 +10445,7 @@
           },
           {
             "name": "geometry",
-            "description": null,
+            "description": "Geometry of the feature",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -10367,11 +10461,11 @@
           },
           {
             "name": "properties",
-            "description": null,
+            "description": "Properties object containing meta data about the feature point",
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "VehicleLocationProperties",
+              "name": "ConnectLocationProperties",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10437,20 +10531,20 @@
       },
       {
         "kind": "OBJECT",
-        "name": "VehicleLocationProperties",
+        "name": "ConnectLocationProperties",
         "description": "Properties of a vehicle location",
         "specifiedByUrl": null,
         "fields": [
           {
             "name": "date",
-            "description": null,
+            "description": "Date when the location was retrieved, as ISO-8601 date",
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -10465,6 +10559,186 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ConnectCharge",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "is_plugged_in",
+            "description": "Vehicle is plugged in",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "is_charging",
+            "description": "Vehicle is charging",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "is_fully_charged",
+            "description": "Battery is fully charged",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "limit",
+            "description": "Charge limit defined by vehicle owner",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "charge_speed",
+            "description": "Charge speed, in kwh",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "fully_charged_at",
+            "description": "Estimation when charging is completed, as ISO-8601 date",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "minutes_till_charged",
+            "description": "Estimated minutes till charged",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "date",
+            "description": "Date when the charge data was retrieved, as ISO-8601 date",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ConnectOdometer",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "distance",
+            "description": "Odometer value, distance driven, default in km",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "date",
+            "description": "Date when the odometer data was retrieved, as ISO-8601 date",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "DistanceUnit",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "meter",
+            "description": "Return the distance in meters",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "foot",
+            "description": "Return the distance in feet",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "kilometer",
+            "description": "Return the distance in kilometers",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "mile",
+            "description": "Return the distance in miles",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ConnectedVehicle",
         "description": null,
         "specifiedByUrl": null,
@@ -10472,22 +10746,6 @@
           {
             "name": "id",
             "description": "Unique ID of the connected vehicle",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "user_id",
-            "description": "ID of the user",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -10562,15 +10820,15 @@
             "deprecationReason": null
           },
           {
-            "name": "permissions",
-            "description": "Permissions for data retrieval from the connected vehicle",
+            "name": "scope",
+            "description": "Scope for accessing the vehicle",
             "args": [],
             "type": {
               "kind": "LIST",
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "ConnectedVehiclePermission",
+                "name": "ConnectScope",
                 "ofType": null
               }
             },
@@ -10649,30 +10907,6 @@
           {
             "name": "Enode",
             "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "ConnectedVehiclePermission",
-        "description": null,
-        "specifiedByUrl": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "location",
-            "description": "Permission to retrieve the location of the vehicle",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "battery",
-            "description": "Permission to retrieve the state of the battery",
             "isDeprecated": false,
             "deprecationReason": null
           }

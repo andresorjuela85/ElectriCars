@@ -11,7 +11,7 @@ final class CarsTableViewCell: UITableViewCell {
     
     static let identifier = String(describing: CarsTableViewCell.self)
     
-    private var carImage = UIImageView()
+    private var carImages = UIImageView()
     private var brandLabel = UILabel()
     private var nameLabel = UILabel()
     
@@ -29,9 +29,10 @@ final class CarsTableViewCell: UITableViewCell {
                 nameLabel.font = .boldSystemFont(ofSize: 18)
             }
             
-            if let image = car?.imageURL {
-                
-                carImage.load(url: URL(string: image)!)
+            if let carImage = car?.imageURL {
+                if let url = URL(string: carImage) {
+                    carImages.load(url: url)
+                }
             }
         }
     }
@@ -40,7 +41,7 @@ final class CarsTableViewCell: UITableViewCell {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .darkGray
-        contentView.addSubview(carImage)
+        contentView.addSubview(carImages)
         contentView.addSubview(brandLabel)
         contentView.addSubview(nameLabel)
     }
@@ -54,23 +55,24 @@ final class CarsTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        carImage.translatesAutoresizingMaskIntoConstraints = false
+        carImages.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            carImage.widthAnchor.constraint(equalToConstant: 178*(3/4)),
-            carImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 3/4),
-            carImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            carImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5)
+            carImages.widthAnchor.constraint(equalToConstant: 178*(3/4)),
+            carImages.heightAnchor.constraint(equalToConstant: 100*(3/4)),
+//            carImages.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 3/4),
+            carImages.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            carImages.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5)
         ])
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: carImage.trailingAnchor, constant: 5),
-            nameLabel.topAnchor.constraint(equalTo: carImage.topAnchor, constant: 10)
+            nameLabel.leadingAnchor.constraint(equalTo: carImages.trailingAnchor, constant: 5),
+            nameLabel.topAnchor.constraint(equalTo: carImages.topAnchor, constant: 10)
         ])
         
         brandLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            brandLabel.leadingAnchor.constraint(equalTo: carImage.trailingAnchor, constant: 5),
+            brandLabel.leadingAnchor.constraint(equalTo: carImages.trailingAnchor, constant: 5),
             brandLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5)
         ])
     }

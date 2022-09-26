@@ -20,8 +20,7 @@ final class CarsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.title = "ElectriCars"
+        setupInterface()
         viewModel?.loadCars()
         setupTable()
         
@@ -30,6 +29,11 @@ final class CarsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+    }
+    
+    func setupInterface() {
+        
+        navigationItem.title = "ElectriCars"
     }
     
     func setupTable() {
@@ -62,9 +66,9 @@ extension CarsViewController: UITableViewDelegate {
         return viewModel?.cars.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 100
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

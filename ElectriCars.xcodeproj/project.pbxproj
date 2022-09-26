@@ -23,6 +23,7 @@
 		547DE181289D841B003ED4ED /* DetailStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547DE180289D841B003ED4ED /* DetailStationViewModel.swift */; };
 		548B074A28AEE8E5008A76CD /* StationsList.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 548B074928AEE8E5008A76CD /* StationsList.graphql */; };
 		548B074C28AEE96A008A76CD /* AddReview.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 548B074B28AEE96A008A76CD /* AddReview.graphql */; };
+		5492784E28E22DEA0030DD9A /* CombineServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5492784D28E22DEA0030DD9A /* CombineServices.swift */; };
 		54A08CEF2892ECA200D22B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08CEE2892ECA200D22B1E /* AppDelegate.swift */; };
 		54A08CF12892ECA200D22B1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08CF02892ECA200D22B1E /* SceneDelegate.swift */; };
 		54A08CF62892ECA200D22B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54A08CF42892ECA200D22B1E /* Main.storyboard */; };
@@ -82,6 +83,7 @@
 		547DE180289D841B003ED4ED /* DetailStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStationViewModel.swift; sourceTree = "<group>"; };
 		548B074928AEE8E5008A76CD /* StationsList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = StationsList.graphql; sourceTree = "<group>"; };
 		548B074B28AEE96A008A76CD /* AddReview.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AddReview.graphql; sourceTree = "<group>"; };
+		5492784D28E22DEA0030DD9A /* CombineServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineServices.swift; sourceTree = "<group>"; };
 		54A08CEB2892ECA200D22B1E /* ElectriCars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectriCars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54A08CEE2892ECA200D22B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54A08CF02892ECA200D22B1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				54A08D472893545A00D22B1E /* Network.swift */,
 				54A08D452893538100D22B1E /* API.swift */,
 				54C2E7A628B56719006D659A /* Services.swift */,
+				5492784D28E22DEA0030DD9A /* CombineServices.swift */,
 				54A08D432893530B00D22B1E /* ListCars.graphql */,
 				548B074928AEE8E5008A76CD /* StationsList.graphql */,
 				548B074B28AEE96A008A76CD /* AddReview.graphql */,
@@ -462,6 +465,7 @@
 				5468940628C8DD8A00F996CD /* DetailHeaderView.swift in Sources */,
 				54A08D32289303AD00D22B1E /* StationsCoordinator.swift in Sources */,
 				54A08D462893538100D22B1E /* API.swift in Sources */,
+				5492784E28E22DEA0030DD9A /* CombineServices.swift in Sources */,
 				54A08CEF2892ECA200D22B1E /* AppDelegate.swift in Sources */,
 				54A08D2C2892F79600D22B1E /* Screens.swift in Sources */,
 				54A08D302893039C00D22B1E /* StationsViewModel.swift in Sources */,
