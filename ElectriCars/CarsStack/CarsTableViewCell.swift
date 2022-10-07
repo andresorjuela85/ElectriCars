@@ -82,7 +82,7 @@ final class CarsTableViewCell: UITableViewCell {
 
 extension UIImageView {
     func load(url: URL) {
-        DispatchQueue.main.async { [weak self] in
+        DispatchQueue.global(qos: .background).async { [weak self] in
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {

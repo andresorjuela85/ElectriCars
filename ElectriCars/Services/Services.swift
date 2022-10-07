@@ -7,9 +7,11 @@
 
 import Foundation
 import Apollo
+import Combine
 
 protocol ServicesDelegate {
     
+    func getCars() -> AnyPublisher<CarList, Never>
     func getCars(completion: @escaping ([Car]) -> Void)
     func getStations(completion: @escaping ([Station]) -> Void)
     func addReview(stationId: String, rating: Int, message: String)
@@ -22,6 +24,14 @@ final class Services: ServicesDelegate {
     
     init(network: Network) {
         self.network = network
+    }
+    
+    func getCars() -> AnyPublisher<CarList, Never> {
+        
+        return network.fetch(of: CarList.self, query: CarListQuery(size: 50))
+            .catch { error in
+                return Just(CarList(data: nil))
+            }.eraseToAnyPublisher()
     }
     
     func getCars(completion: @escaping ([Car]) -> Void) {

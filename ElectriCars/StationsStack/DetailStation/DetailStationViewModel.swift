@@ -34,17 +34,17 @@ final class DetailStationViewModel: DetailStationViewModelDelegate {
     
     func goToReview(delegate: AddReviewDelegate?) {
         if let stationId = station?.id {
-        coordinator.showAddReview(stationId: stationId, delegate: delegate)
+            coordinator.showAddReview(stationId: stationId, delegate: delegate)
         }
     }
     
     func loadReviews() {
         
         if let id = station?.id {
-        service.getReviews(stationId: id) { reviewReceived in
-            self.reviews = reviewReceived
-            self.viewController.reloadTable()
-        }
+            service.getReviews(stationId: id) { reviewReceived in
+                self.reviews = reviewReceived
+                self.viewController.reloadTable()
+            }
         }
     }
 }

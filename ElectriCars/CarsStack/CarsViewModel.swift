@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol CarsViewModelDelegate {
     
@@ -25,6 +26,8 @@ final class CarsViewModel: CarsViewModelDelegate {
     
     let service = Services(network: Network())
     
+    var subscriptions = Set<AnyCancellable>()
+    
     init(`let` coordinator: CarsCoordinator, `let` viewController: CarsViewControllerDelegate) {
         self.coordinator = coordinator
         self.viewController = viewController
@@ -36,10 +39,11 @@ final class CarsViewModel: CarsViewModelDelegate {
     
     func loadCars() {
         
-        service.getCars { carsReceived in
-            
-            self.cars = carsReceived
-            self.viewController.reloadTable()
-        }
+        service.getCars().sink { carList in
+            DispatchQueue.main.async {
+                self.cars = carList.cars
+                self.viewController.reloadTable()
+            }
+        }.store(in: &subscriptions)
     }
 }
