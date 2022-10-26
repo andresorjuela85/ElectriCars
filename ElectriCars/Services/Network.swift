@@ -7,11 +7,15 @@
 
 import Foundation
 import Apollo
-
+import Combine
 
 enum ServiceResponse<T> {
     case success(response: T)
     case failure(error: Error?)
+}
+
+enum ServiceError: Error {
+    case error
 }
 
 final class Network {
@@ -36,23 +40,27 @@ final class Network {
                             store: store1)
     }()
     
-    func fetch<T: ModelProcessProtocol, Query: GraphQLQuery>(of type: T.Type, query: Query, completionHandler: @escaping (ServiceResponse<T>) -> Void) {
+    func fetch<T: ModelProcessProtocol, Query: GraphQLQuery>(of type: T.Type, query: Query) -> AnyPublisher<T, Error> {
         
-        apollo.fetch(query: query) { result in
-            
-            switch result {
-            case .success(let graphQLResult):
-                
-                if let data = graphQLResult.data {
-                    completionHandler(.success(response: T.processData(data)))
-                } else {
-                    completionHandler(.failure(error: nil))
+        return Deferred {
+            Future<T, Error> { promise in
+                self.apollo.fetch(query: query) { result in
+                    
+                    switch result {
+                    case .success(let graphQLResult):
+                        
+                        if let data = graphQLResult.data {
+                            promise(.success(T.processData(data)))
+                        } else {
+                            promise(.failure(ServiceError.error))
+                        }
+                        
+                    case .failure(let error):
+                        promise(.failure(error))
+                    }
                 }
-                
-            case .failure(let error):
-                completionHandler(.failure(error: error))
             }
-        }
+        }.eraseToAnyPublisher()
     }
 }
 

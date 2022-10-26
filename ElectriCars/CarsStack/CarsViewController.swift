@@ -26,14 +26,14 @@ final class CarsViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        tableView.reloadData()
+//    }
     
     func setupInterface() {
         
-        navigationItem.title = "ElectriCars"
+        navigationItem.title = "TABBAR_OPTION_NAME_CARS".localized()
     }
     
     func setupTable() {
@@ -65,10 +65,10 @@ extension CarsViewController: UITableViewDelegate {
         
         return viewModel?.cars.count ?? 0
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 100
-//    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

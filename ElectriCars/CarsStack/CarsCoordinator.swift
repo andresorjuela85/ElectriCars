@@ -8,15 +8,22 @@
 import Foundation
 import UIKit
 
-final class CarsCoordinator {
+protocol CoordinatorProtocol {
+    func start()
+}
+
+protocol CarsCoordinatorProtocol: CoordinatorProtocol {
+    func showCarsViewController()
+    func showDetail(car: Car)
+    func start()
+}
+
+final class CarsCoordinator: CarsCoordinatorProtocol {
     
     private let presenter: UINavigationController
     
-    private let screen: Screens
-    
-    init(presenter: UINavigationController, screens: Screens) {
+    init(presenter: UINavigationController) {
         self.presenter = presenter
-        self.screen = screens
     }
     
     func start() {
@@ -24,12 +31,12 @@ final class CarsCoordinator {
     }
     
     func showCarsViewController() {
-        let viewController = screen.createCarsViewController(coordinator: self)
+        let viewController = Screens.createCarsViewController(coordinator: self)
         presenter.viewControllers = [viewController]
     }
     
     func showDetail(car: Car) {
-        let viewController = screen.createDetailCarViewController(car: car)
+        let viewController = Screens.createDetailCarViewController(car: car)
         presenter.pushViewController(viewController, animated: true)
     }
 }

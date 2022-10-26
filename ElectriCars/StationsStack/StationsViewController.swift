@@ -21,10 +21,14 @@ final class StationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Stations"
-        
+        setupInterface()
         viewModel?.loadStations()
         setupTable()
+    }
+    
+    func setupInterface() {
+        
+        navigationItem.title = "TABBAR_OPTION_NAME_STATIONS".localized()
     }
     
     func setupTable () {
@@ -34,6 +38,7 @@ final class StationsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(StationsTableViewCell.self, forCellReuseIdentifier: StationsTableViewCell.identifier)
+//        tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
     }
 }
 
@@ -54,13 +59,14 @@ extension StationsViewController: UITableViewDelegate {
         return viewModel?.stations.count ?? 0
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel?.goToDetail(station: (viewModel?.stations[indexPath.row])!)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
 }
 
 extension StationsViewController: UITableViewDataSource {

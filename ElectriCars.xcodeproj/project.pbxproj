@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54271EE0290344C40003B23D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 54271EDF290344C40003B23D /* Localizable.strings */; };
+		54271EE4290345700003B23D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54271EE3290345700003B23D /* String.swift */; };
+		54271EE7290347140003B23D /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54271EE6290347140003B23D /* Assets.swift */; };
 		544680FB28BD51E800933F8E /* CarList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544680FA28BD51E800933F8E /* CarList.swift */; };
 		5450D47F2899AF9E0020FB3F /* CarsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5450D47E2899AF9E0020FB3F /* CarsTableViewCell.swift */; };
 		5450D4822899BBF70020FB3F /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5450D4812899BBF70020FB3F /* AlamofireImage */; };
@@ -23,7 +26,6 @@
 		547DE181289D841B003ED4ED /* DetailStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547DE180289D841B003ED4ED /* DetailStationViewModel.swift */; };
 		548B074A28AEE8E5008A76CD /* StationsList.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 548B074928AEE8E5008A76CD /* StationsList.graphql */; };
 		548B074C28AEE96A008A76CD /* AddReview.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 548B074B28AEE96A008A76CD /* AddReview.graphql */; };
-		5492784E28E22DEA0030DD9A /* CombineServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5492784D28E22DEA0030DD9A /* CombineServices.swift */; };
 		54A08CEF2892ECA200D22B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08CEE2892ECA200D22B1E /* AppDelegate.swift */; };
 		54A08CF12892ECA200D22B1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08CF02892ECA200D22B1E /* SceneDelegate.swift */; };
 		54A08CF62892ECA200D22B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54A08CF42892ECA200D22B1E /* Main.storyboard */; };
@@ -48,6 +50,7 @@
 		54A08D462893538100D22B1E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D452893538100D22B1E /* API.swift */; };
 		54A08D482893545A00D22B1E /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A08D472893545A00D22B1E /* Network.swift */; };
 		54C2E7A728B56719006D659A /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C2E7A628B56719006D659A /* Services.swift */; };
+		54CB23EB28E39B5800B7BD4D /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CB23EA28E39B5800B7BD4D /* LoadImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		54271EDF290344C40003B23D /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		54271EE3290345700003B23D /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		54271EE6290347140003B23D /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		544680FA28BD51E800933F8E /* CarList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarList.swift; sourceTree = "<group>"; };
 		5450D47E2899AF9E0020FB3F /* CarsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsTableViewCell.swift; sourceTree = "<group>"; };
 		5450D484289AE0D20020FB3F /* DetailCarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCarViewModel.swift; sourceTree = "<group>"; };
@@ -83,7 +89,6 @@
 		547DE180289D841B003ED4ED /* DetailStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStationViewModel.swift; sourceTree = "<group>"; };
 		548B074928AEE8E5008A76CD /* StationsList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = StationsList.graphql; sourceTree = "<group>"; };
 		548B074B28AEE96A008A76CD /* AddReview.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AddReview.graphql; sourceTree = "<group>"; };
-		5492784D28E22DEA0030DD9A /* CombineServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineServices.swift; sourceTree = "<group>"; };
 		54A08CEB2892ECA200D22B1E /* ElectriCars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectriCars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54A08CEE2892ECA200D22B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54A08CF02892ECA200D22B1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 		54A08D452893538100D22B1E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = ElectriCars/API.swift; sourceTree = SOURCE_ROOT; };
 		54A08D472893545A00D22B1E /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		54C2E7A628B56719006D659A /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		54CB23EA28E39B5800B7BD4D /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +157,40 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
+		54271EDE290344A80003B23D /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				54271EDF290344C40003B23D /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		54271EE1290345430003B23D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				54271EE5290346F40003B23D /* Assets */,
+				54271EE22903455F0003B23D /* Extensions */,
+				54271EDE290344A80003B23D /* Localization */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		54271EE22903455F0003B23D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				54271EE3290345700003B23D /* String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		54271EE5290346F40003B23D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				54271EE6290347140003B23D /* Assets.swift */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		544680F928BD51D400933F8E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,10 +213,10 @@
 		547DE17D289D83C5003ED4ED /* DetailStation */ = {
 			isa = PBXGroup;
 			children = (
-				5409DAD528CB948B00734E17 /* Review */,
 				547DE17E289D8405003ED4ED /* DetailStationViewController.swift */,
 				547DE180289D841B003ED4ED /* DetailStationViewModel.swift */,
 				5468940528C8DD8A00F996CD /* DetailHeaderView.swift */,
+				5409DAD528CB948B00734E17 /* Review */,
 			);
 			path = DetailStation;
 			sourceTree = "<group>";
@@ -206,10 +246,12 @@
 			children = (
 				54A08CEE2892ECA200D22B1E /* AppDelegate.swift */,
 				54A08CF02892ECA200D22B1E /* SceneDelegate.swift */,
+				54CB23EA28E39B5800B7BD4D /* LoadImage.swift */,
 				54A08D1E2892ECC100D22B1E /* Navigation */,
 				54A08D332893343A00D22B1E /* Services */,
 				54A08D232892F69500D22B1E /* CarsStack */,
 				54A08D242892F6AC00D22B1E /* StationsStack */,
+				54271EE1290345430003B23D /* Common */,
 				54A08CF42892ECA200D22B1E /* Main.storyboard */,
 				54A08CF72892ECA500D22B1E /* Assets.xcassets */,
 				54A08CF92892ECA500D22B1E /* LaunchScreen.storyboard */,
@@ -277,7 +319,6 @@
 				54A08D472893545A00D22B1E /* Network.swift */,
 				54A08D452893538100D22B1E /* API.swift */,
 				54C2E7A628B56719006D659A /* Services.swift */,
-				5492784D28E22DEA0030DD9A /* CombineServices.swift */,
 				54A08D432893530B00D22B1E /* ListCars.graphql */,
 				548B074928AEE8E5008A76CD /* StationsList.graphql */,
 				548B074B28AEE96A008A76CD /* AddReview.graphql */,
@@ -405,6 +446,7 @@
 				548B074C28AEE96A008A76CD /* AddReview.graphql in Resources */,
 				54A08CFB2892ECA500D22B1E /* LaunchScreen.storyboard in Resources */,
 				54A08CF82892ECA500D22B1E /* Assets.xcassets in Resources */,
+				54271EE0290344C40003B23D /* Localizable.strings in Resources */,
 				54A08D442893530B00D22B1E /* ListCars.graphql in Resources */,
 				54A08CF62892ECA200D22B1E /* Main.storyboard in Resources */,
 			);
@@ -452,6 +494,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54271EE4290345700003B23D /* String.swift in Sources */,
 				54A08D282892F6E200D22B1E /* CarsViewModel.swift in Sources */,
 				54A08D222892F2CC00D22B1E /* TabCoordinator.swift in Sources */,
 				54A08D202892ED0C00D22B1E /* AppCoordinator.swift in Sources */,
@@ -459,13 +502,14 @@
 				547DE181289D841B003ED4ED /* DetailStationViewModel.swift in Sources */,
 				5466833C28BE99F20046BC68 /* StationList.swift in Sources */,
 				54A08D2A2892F6FE00D22B1E /* CarsViewController.swift in Sources */,
+				54271EE7290347140003B23D /* Assets.swift in Sources */,
 				545BAD8328A3056800DEAE19 /* AddReviewViewModel.swift in Sources */,
 				54A08D482893545A00D22B1E /* Network.swift in Sources */,
 				547DE17C289D5F69003ED4ED /* StationsTableViewCell.swift in Sources */,
 				5468940628C8DD8A00F996CD /* DetailHeaderView.swift in Sources */,
+				54CB23EB28E39B5800B7BD4D /* LoadImage.swift in Sources */,
 				54A08D32289303AD00D22B1E /* StationsCoordinator.swift in Sources */,
 				54A08D462893538100D22B1E /* API.swift in Sources */,
-				5492784E28E22DEA0030DD9A /* CombineServices.swift in Sources */,
 				54A08CEF2892ECA200D22B1E /* AppDelegate.swift in Sources */,
 				54A08D2C2892F79600D22B1E /* Screens.swift in Sources */,
 				54A08D302893039C00D22B1E /* StationsViewModel.swift in Sources */,

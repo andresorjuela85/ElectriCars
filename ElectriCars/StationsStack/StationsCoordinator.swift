@@ -8,15 +8,20 @@
 import Foundation
 import UIKit
 
-final class StationsCoordinator {
+protocol StationsCoordinatorProtocol: CoordinatorProtocol {
+    func showStationsViewController()
+    func showStationDetail(station: Station)
+    func showAddReview(stationId: String, delegate: AddReviewDelegate?)
+    func start()
+}
+
+
+final class StationsCoordinator: StationsCoordinatorProtocol {
     
     private let presenter: UINavigationController
     
-    private let screen: Screens
-    
-    init(presenter: UINavigationController, screens: Screens) {
+    init(presenter: UINavigationController) {
         self.presenter = presenter
-        self.screen = screens
     }
     
     func start() {
@@ -24,17 +29,17 @@ final class StationsCoordinator {
     }
     
     func showStationsViewController() {
-        let viewController = screen.createStationsViewController(coordinator: self)
+        let viewController = Screens.createStationsViewController(coordinator: self)
         presenter.viewControllers = [viewController]
     }
     
     func showStationDetail(station: Station) {
-        let viewController = screen.createDetailStationViewController(station: station, coordinator: self)
+        let viewController = Screens.createDetailStationViewController(station: station, coordinator: self)
         presenter.pushViewController(viewController, animated: true)
     }
     
     func showAddReview(stationId: String, delegate: AddReviewDelegate?) {
-        let viewController = screen.createAddReviewViewController(stationId: stationId, delegate: delegate)
+        let viewController = Screens.createAddReviewViewController(stationId: stationId, delegate: delegate)
         presenter.present(viewController, animated: true)
     }
 }

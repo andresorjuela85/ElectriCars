@@ -41,9 +41,11 @@ final class CarsTableViewCell: UITableViewCell {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .darkGray
+        
         contentView.addSubview(carImages)
         contentView.addSubview(brandLabel)
         contentView.addSubview(nameLabel)
+        setupSubviews()
     }
     
     required init?(coder: NSCoder) {
@@ -52,14 +54,13 @@ final class CarsTableViewCell: UITableViewCell {
     
     //MARK: Subviews constraints
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
+    func setupSubviews() {
         carImages.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            carImages.topAnchor.constraint(equalTo: contentView.topAnchor),
+            carImages.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             carImages.widthAnchor.constraint(equalToConstant: 178*(3/4)),
             carImages.heightAnchor.constraint(equalToConstant: 100*(3/4)),
-//            carImages.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 3/4),
             carImages.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             carImages.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5)
         ])
@@ -75,21 +76,5 @@ final class CarsTableViewCell: UITableViewCell {
             brandLabel.leadingAnchor.constraint(equalTo: carImages.trailingAnchor, constant: 5),
             brandLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5)
         ])
-    }
-}
-
-//MARK: Load image
-
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.main.async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
     }
 }

@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  ElectriCars
+
+  Created by Andres Orjuela on 21/10/22.
+  
+*/
+
+"TABBAR_OPTION_NAME_CARS" = "ElectriCars";
+"TABBAR_OPTION_NAME_STATIONS" = "Stations";
+"DETAILCAR_LABEL_MAKE" = "Make";
+"DETAILCAR_LABEL_MODEL" = "Model";
+"DETAILCAR_LABEL_CHARGE" = "Charge trip version";
+"DETAILSTATIONS_LABEL_SHOW" = "Station reviews:";
+"HEADERSTATIONS_OPTION_DAY_1" = "Monday";
+"HEADERSTATIONS_OPTION_DAY_2" = "Tuesday";
+"HEADERSTATIONS_OPTION_DAY_3" = "Wednesday";
+"HEADERSTATIONS_OPTION_DAY_4" = "Thursday";
+"HEADERSTATIONS_OPTION_DAY_5" = "Friday";
+"HEADERSTATIONS_OPTION_DAY_6" = "Saturday";
+"HEADERSTATIONS_OPTION_DAY_7" = "Sunday";
+"HEADERSTATIONS_LABEL_STATION" = "Station Details";
+"HEADERSTATIONS_LABEL_NAME" = "Name:";
+"HEADERSTATIONS_LABEL_ADDRESS" = "Address:";
+"HEADERSTATIONS_LABEL_OPEN" = "Opening times:";
+"ADDREVIEW_LABEL_SELECT" = "Select a rating:";
+"ADDREVIEW_ADD_TITLE" = "Add review";
+"ADDREVIEW_PICKER_TEXT" = "Add your review";
+"REVIEWTABLE_LABEL_RATING" = "Rating:";
+
+

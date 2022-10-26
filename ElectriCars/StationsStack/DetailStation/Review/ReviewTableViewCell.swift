@@ -57,32 +57,32 @@ final class ReviewTableViewCell: UITableViewCell {
                 reviewLabel.textColor = .white
             }
             
-            ratingLabel.text = "Rating:"
+            ratingLabel.text = "REVIEWTABLE_LABEL_RATING".localized()
             ratingLabel.textColor = .white
 
             if let star = review?.rating {
                 
                 switch star {
                 case 1:
-                    starImage1.image = UIImage(systemName: "star.fill")
+                    starImage1.image = UIImage(systemName: Assets.Icons.star)
                 case 2:
-                    starImage1.image = UIImage(systemName: "star.fill")
-                    starImage2.image = UIImage(systemName: "star.fill")
+                    starImage1.image = UIImage(systemName: Assets.Icons.star)
+                    starImage2.image = UIImage(systemName: Assets.Icons.star)
                 case 3:
-                    starImage1.image = UIImage(systemName: "star.fill")
-                    starImage2.image = UIImage(systemName: "star.fill")
-                    starImage3.image = UIImage(systemName: "star.fill")
+                    starImage1.image = UIImage(systemName: Assets.Icons.star)
+                    starImage2.image = UIImage(systemName: Assets.Icons.star)
+                    starImage3.image = UIImage(systemName: Assets.Icons.star)
                 case 4:
-                    starImage1.image = UIImage(systemName: "star.fill")
-                    starImage2.image = UIImage(systemName: "star.fill")
-                    starImage3.image = UIImage(systemName: "star.fill")
-                    starImage4.image = UIImage(systemName: "star.fill")
+                    starImage1.image = UIImage(systemName: Assets.Icons.star)
+                    starImage2.image = UIImage(systemName: Assets.Icons.star)
+                    starImage3.image = UIImage(systemName: Assets.Icons.star)
+                    starImage4.image = UIImage(systemName: Assets.Icons.star)
                 case 5:
-                    starImage1.image = UIImage(systemName: "star.fill")
-                    starImage2.image = UIImage(systemName: "star.fill")
-                    starImage3.image = UIImage(systemName: "star.fill")
-                    starImage4.image = UIImage(systemName: "star.fill")
-                    starImage5.image = UIImage(systemName: "star.fill")
+                    starImage1.image = UIImage(systemName: Assets.Icons.star)
+                    starImage2.image = UIImage(systemName: Assets.Icons.star)
+                    starImage3.image = UIImage(systemName: Assets.Icons.star)
+                    starImage4.image = UIImage(systemName: Assets.Icons.star)
+                    starImage5.image = UIImage(systemName: Assets.Icons.star)
                 default:
                     print("Error")
                 }

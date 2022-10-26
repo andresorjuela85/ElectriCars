@@ -191,7 +191,7 @@
           },
           {
             "name": "connectedVehicle",
-            "description": "[BETA] Get connected vehicles for the current user",
+            "description": "[BETA] Get a connected vehicles by id",
             "args": [
               {
                 "name": "id",
@@ -220,8 +220,45 @@
           },
           {
             "name": "connectedVehicleList",
-            "description": "[BETA] Get a connected vehicle by id",
-            "args": [],
+            "description": "[BETA] Get the connected vehicles for the current user",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter connectedVehicleList result",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ConnectedVehicleListFilter",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "size",
+                "description": "Number of elements (count) to return, default: 10",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": "10",
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "page",
+                "description": "Page number to return, default: 0",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": "0",
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
             "type": {
               "kind": "LIST",
               "name": null,
@@ -637,15 +674,23 @@
             "args": [
               {
                 "name": "id",
-                "description": "The station ID",
+                "description": "ID of a station",
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "evse_id",
+                "description": "ID of a EVSE",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
                 },
                 "defaultValue": null,
                 "isDeprecated": false,
@@ -1207,7 +1252,7 @@
           },
           {
             "name": "removeConnectedVehicle",
-            "description": "[BETA] Revoke access for a connected vehicle",
+            "description": "[BETA] Remove a connected vehicle and revoke access",
             "args": [
               {
                 "name": "input",
@@ -1227,8 +1272,8 @@
               }
             ],
             "type": {
-              "kind": "SCALAR",
-              "name": "Void",
+              "kind": "OBJECT",
+              "name": "ConnectedVehicle",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1535,7 +1580,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "NewConnectedVehicleOptions",
+                "name": "CreateConnectedVehicleOptions",
                 "ofType": null
               }
             },
@@ -1662,7 +1707,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "NewConnectedVehicleOptions",
+        "name": "CreateConnectedVehicleOptions",
         "description": null,
         "specifiedByUrl": null,
         "fields": null,
@@ -1686,9 +1731,13 @@
               "kind": "LIST",
               "name": null,
               "ofType": {
-                "kind": "ENUM",
-                "name": "ConnectScope",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "ConnectScope",
+                  "ofType": null
+                }
               }
             },
             "defaultValue": null,
@@ -8173,6 +8222,24 @@
       },
       {
         "kind": "ENUM",
+        "name": "LineStringType",
+        "description": "GeoJSON LineString type",
+        "specifiedByUrl": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "LineString",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
         "name": "FeatureType",
         "description": "GeoJSON Feature type",
         "specifiedByUrl": null,
@@ -8191,15 +8258,15 @@
       },
       {
         "kind": "ENUM",
-        "name": "PolygonType",
-        "description": "GeoJSON Polygon type",
+        "name": "MultiPolygonType",
+        "description": "GeoJSON MultiPolygon type",
         "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
-            "name": "Polygon",
+            "name": "MultiPolygon",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -8381,6 +8448,62 @@
       },
       {
         "kind": "OBJECT",
+        "name": "LineString",
+        "description": "A GeoJSON LineString",
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": "LineString type",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "LineStringType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "coordinates",
+            "description": "List of coordinates arrays with longitude as first value and latitude as second one",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Float",
+                      "ofType": null
+                    }
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "FeaturePoint",
         "description": "A GeoJSON Feature<Point>",
         "specifiedByUrl": null,
@@ -8525,6 +8648,78 @@
           {
             "name": "ALWAYS_TO_MAX_CHARGE",
             "description": "Charge to the maximum capacity at every charging stop. The default maximum charging capacity is 80%",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "AmenityType",
+        "description": "A list of amenity types",
+        "specifiedByUrl": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "park",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "restaurant",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "museum",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "coffee",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hotel",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shopping",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bathroom",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "supermarket",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "playground",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pharmacy",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -10373,7 +10568,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "Float",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10397,7 +10592,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "Float",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10677,7 +10872,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "Float",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10735,6 +10930,38 @@
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ConnectedVehicleListFilter",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "status",
+            "description": "Status of the connected vehicle",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "ConnectedVehicleStatus",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": "[pending_authorization, pending_removal, authorized]",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -10875,8 +11102,8 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "pending",
-            "description": "Vehicle was added to the Chargetrip platform but not yet authorized",
+            "name": "pending_authorization",
+            "description": "Vehicle was added to the Chargetrip Connect platform but not yet authorized",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -10887,8 +11114,14 @@
             "deprecationReason": null
           },
           {
-            "name": "deauthorized",
-            "description": "User did revoke permissions to retrieve data from the vehicle",
+            "name": "pending_removal",
+            "description": "Pending vehicle removal",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "removed",
+            "description": "Vehicle was removed and access has been revoked",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -10944,6 +11177,54 @@
         "possibleTypes": null
       },
       {
+        "kind": "ENUM",
+        "name": "IsolineQuality",
+        "description": "Granularity of the isoline",
+        "specifiedByUrl": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "high",
+            "description": "High polygons precisions",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "low",
+            "description": "Low polygons precisions",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "IsolineFerryConnectionsType",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "none",
+            "description": "Ferry connections should not be included",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "single",
+            "description": "Ferry connections should be taken into account but only one level deep. For example: from the European mainland to England and no other connecting ferries departing from England.",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "Isoline",
         "description": null,
@@ -10983,14 +11264,30 @@
           },
           {
             "name": "polygons",
-            "description": "Shape of the isoline consisting in a list of polygons",
+            "description": "Shape of the isoline consisting in a list of multipolygons",
             "args": [],
             "type": {
               "kind": "LIST",
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "FeaturePolygon",
+                "name": "FeatureMultiPolygon",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ferries",
+            "description": "List of the ferries uniting islands formed by the isoline",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "FeatureLineString",
                 "ofType": null
               }
             },
@@ -11006,7 +11303,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "FeaturePolygonPoint",
+                "name": "FeatureMultiPolygonPoint",
                 "ofType": null
               }
             },
@@ -11031,7 +11328,7 @@
           },
           {
             "name": "polygon_count",
-            "description": "Number of Isolines to be generated representing SoC (default: 1, max: 100)",
+            "description": "Number of Isolines to be generated representing SoC (default: 1, maximum: 20)",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -11043,7 +11340,7 @@
           },
           {
             "name": "season",
-            "description": "Season to be taken into account when generating the isoline, defaults to current",
+            "description": "Season to be taken into account when generating the isoline. Default: current",
             "args": [],
             "type": {
               "kind": "ENUM",
@@ -11100,25 +11397,73 @@
           },
           {
             "name": "polygon_count",
-            "description": "Numbers of polygons to be generated (default: 1, max: 100)",
+            "description": "Numbers of polygons to be generated (default: 1, maximum: 20)",
             "type": {
               "kind": "SCALAR",
               "name": "Int",
               "ofType": null
             },
-            "defaultValue": null,
+            "defaultValue": "1",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "round_trip",
+            "description": "Vehicle should be able to return to the origin point from any point",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": "false",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "climate_control",
+            "description": "Climate is on",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": "true",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "season",
-            "description": "Season to be taken into account when generating the isoline, defaults to current",
+            "description": "Season to be taken into account when generating the isoline",
             "type": {
               "kind": "ENUM",
               "name": "RouteSeason",
               "ofType": null
             },
-            "defaultValue": null,
+            "defaultValue": "current",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "quality",
+            "description": "Polygons precision quality",
+            "type": {
+              "kind": "ENUM",
+              "name": "IsolineQuality",
+              "ofType": null
+            },
+            "defaultValue": "high",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ferry_connections",
+            "description": "Include ferry connections. Single and multiple ferry connections increase the calculation time and the number of polygons.",
+            "type": {
+              "kind": "ENUM",
+              "name": "IsolineFerryConnectionsType",
+              "ofType": null
+            },
+            "defaultValue": "none",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -11209,8 +11554,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "FeaturePolygon",
-        "description": "A GeoJSON Feature<Polygon>",
+        "name": "FeatureMultiPolygon",
+        "description": "A GeoJSON Feature<MultiPolygon>",
         "specifiedByUrl": null,
         "fields": [
           {
@@ -11238,7 +11583,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Polygon",
+                "name": "MultiPolygon",
                 "ofType": null
               }
             },
@@ -11247,7 +11592,7 @@
           },
           {
             "name": "properties",
-            "description": "Properties of the Polygon Feature",
+            "description": "Properties of the MultiPolygon Feature",
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -11265,20 +11610,20 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Polygon",
+        "name": "MultiPolygon",
         "description": "A GeoJSON Polygon",
         "specifiedByUrl": null,
         "fields": [
           {
             "name": "type",
-            "description": "Polygon type",
+            "description": "MultiPolygon type",
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "PolygonType",
+                "name": "MultiPolygonType",
                 "ofType": null
               }
             },
@@ -11302,9 +11647,17 @@
                     "kind": "LIST",
                     "name": null,
                     "ofType": {
-                      "kind": "SCALAR",
-                      "name": "Float",
-                      "ofType": null
+                      "kind": "LIST",
+                      "name": null,
+                      "ofType": {
+                        "kind": "NON_NULL",
+                        "name": null,
+                        "ofType": {
+                          "kind": "SCALAR",
+                          "name": "Float",
+                          "ofType": null
+                        }
+                      }
                     }
                   }
                 }
@@ -11345,7 +11698,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "FeaturePolygonPoint",
+        "name": "FeatureMultiPolygonPoint",
         "description": "A GeoJSON Feature<Point>",
         "specifiedByUrl": null,
         "fields": [
@@ -11389,6 +11742,50 @@
               "kind": "SCALAR",
               "name": "JSON",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "FeatureLineString",
+        "description": "A GeoJSON Feature<LineString>",
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": "Feature type",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "FeatureType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "geometry",
+            "description": "Geometry of the feature",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "LineString",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -14310,6 +14707,12 @@
             "deprecationReason": null
           },
           {
+            "name": "stationAmenity",
+            "description": "This leg ends at a scheduled charging station and the car must recharge",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "via",
             "description": "This leg ends at a via location",
             "isDeprecated": false,
@@ -14837,7 +15240,7 @@
         "inputFields": [
           {
             "name": "amenities",
-            "description": "A list of desired amenities near the stations, with a 1 km radius",
+            "description": "Deprecated: in favor of amenity preferences. A list of desired amenities near the stations, with a 1 kilometer radius",
             "type": {
               "kind": "LIST",
               "name": null,
@@ -14846,6 +15249,18 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "amenity_preferences",
+            "description": "Amenity preferences for a route",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "AmenityPreferencesInput",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -15229,6 +15644,150 @@
                 "kind": "SCALAR",
                 "name": "ID",
                 "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ScheduledChargeStopInput",
+        "description": "Scheduled charge stop along a route",
+        "specifiedByUrl": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "types",
+            "description": "List of amenity types",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "AmenityType",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "duration",
+            "description": "Duration at the amenity, in seconds. The value should be between 900 and 86400",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "offset",
+            "description": "Maximum allowed offset from the stop_after value in seconds. Default is 1800",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": "1800",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stop_after",
+            "description": "Desired drive time for a scheduled stop after leaving the origin point, in seconds",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "max_distance_from_station",
+            "description": "Maximum distance from a station to an amenity, in meters. The value should be between 0 and 1000. Default is 1000",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": "1000",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "AmenityPreferencesInput",
+        "description": "Amenity preferences for a route",
+        "specifiedByUrl": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "all_charge_stops",
+            "description": "Desired amenities near all charge-stops along a route, with a 1 kilometer radius",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "AmenityType",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "scheduled_charge_stops",
+            "description": "Scheduled charge stops, with a specified amenity and timeline",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ScheduledChargeStopInput",
+                  "ofType": null
+                }
               }
             },
             "defaultValue": null,
@@ -17010,7 +17569,7 @@
         "fields": [
           {
             "name": "amenities",
-            "description": "Desired amenities near the stations, within a 1 km radius",
+            "description": "Requested amenities near the stations, within a 1 kilometer radius",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -17020,6 +17579,18 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Will be removed. Use the amenity preferences instead"
+          },
+          {
+            "name": "amenity_preferences",
+            "description": "Amenity preferences for a route",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "RouteAmenityPreferences",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -17516,6 +18087,134 @@
                 "name": "ID",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "RouteAmenityPreferences",
+        "description": "Amenity preferences for a route",
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "all_charge_stops",
+            "description": "Desired amenities near all charge-stops along a route, with a 1 kilometer radius",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "AmenityType",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "scheduled_charge_stops",
+            "description": "Scheduled charge stops, with a specified amenity and timeline",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "RouteScheduledChargeStop",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "RouteScheduledChargeStop",
+        "description": "Scheduled charge stop along a route",
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "types",
+            "description": "List of amenity types",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "AmenityType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "duration",
+            "description": "Duration at the amenity, in seconds",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "offset",
+            "description": "Maximum allowed offset from the stop_after value in seconds. Default is 1800",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stop_after",
+            "description": "Desired drive time before a scheduled stop after leaving the previous stop, in seconds",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "max_distance_from_station",
+            "description": "Maximum distance from a station to an amenity, in meters",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null

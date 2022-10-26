@@ -12,13 +12,13 @@ class DetailTableHeader: UITableViewHeaderFooterView {
     
     static let identifier = String(describing: DetailTableHeader.self)
     
-    let days = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
+    let days = ["HEADERSTATIONS_OPTION_DAY_1".localized(), "HEADERSTATIONS_OPTION_DAY_2".localized(), "HEADERSTATIONS_OPTION_DAY_3".localized(), "HEADERSTATIONS_OPTION_DAY_4".localized(), "HEADERSTATIONS_OPTION_DAY_5".localized(), "HEADERSTATIONS_OPTION_DAY_6".localized(), "HEADERSTATIONS_OPTION_DAY_7".localized()]
     var day = ""
     
     private let stationLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "Station Details"
+        label.text = "HEADERSTATIONS_LABEL_STATION".localized()
         label.font = .boldSystemFont(ofSize: 19)
         return label
     }()
@@ -26,7 +26,7 @@ class DetailTableHeader: UITableViewHeaderFooterView {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "Name:"
+        label.text = "HEADERSTATIONS_LABEL_NAME".localized()
         return label
     }()
     
@@ -39,7 +39,7 @@ class DetailTableHeader: UITableViewHeaderFooterView {
     private let addressLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "Address:"
+        label.text = "HEADERSTATIONS_LABEL_ADDRESS".localized()
         return label
     }()
     
@@ -90,7 +90,7 @@ class DetailTableHeader: UITableViewHeaderFooterView {
                 weekday.forEach { weekday in
                     if weekday.periodBegin != nil || weekday.periodEnd != nil {
                         day = day + "\(days[(weekday.weekday ?? 0) - 1 ])  \(weekday.periodBegin ?? "") - \(weekday.periodEnd ?? "")\n"
-                        openLabel.text = "Opening times:"
+                        openLabel.text = "HEADERSTATIONS_LABEL_OPEN".localized()
                     }
                     
                     timesLabel.text = day

@@ -6,26 +6,30 @@
 //
 
 import Foundation
+import Combine
 
 protocol CarsViewModelDelegate {
     
     var cars: [Car] { get set }
     
     func loadCars()
+    
     func goToDetail(car: Car)
 }
 
 final class CarsViewModel: CarsViewModelDelegate {
     
-    var coordinator: CarsCoordinator
-    
-    var cars: [Car] = []
+    var coordinator: CarsCoordinatorProtocol
     
     var viewController: CarsViewControllerDelegate
     
+    var cars: [Car] = []
+    
     let service = Services(network: Network())
     
-    init(`let` coordinator: CarsCoordinator, `let` viewController: CarsViewControllerDelegate) {
+    var subscriptions = Set<AnyCancellable>()
+    
+    init(`let` coordinator: CarsCoordinatorProtocol, `let` viewController: CarsViewControllerDelegate) {
         self.coordinator = coordinator
         self.viewController = viewController
     }
@@ -36,10 +40,11 @@ final class CarsViewModel: CarsViewModelDelegate {
     
     func loadCars() {
         
-        service.getCars { carsReceived in
-            
-            self.cars = carsReceived
-            self.viewController.reloadTable()
-        }
+        service.getCars().sink { carList in
+            DispatchQueue.main.async {
+                self.cars = carList.cars
+                self.viewController.reloadTable()
+            }
+        }.store(in: &subscriptions)
     }
 }

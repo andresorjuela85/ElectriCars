@@ -24,7 +24,7 @@ final class DetailStationViewController: UIViewController {
     private let showButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .black
-        button.setTitle("Station reviews:", for: .normal)
+        button.setTitle("DETAILSTATIONS_LABEL_SHOW".localized(), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

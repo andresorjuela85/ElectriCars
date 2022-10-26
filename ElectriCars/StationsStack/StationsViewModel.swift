@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol StationsViewModelDelegate {
     
@@ -18,14 +19,17 @@ protocol StationsViewModelDelegate {
 
 final class StationsViewModel: StationsViewModelDelegate {
     
-    var coordinator: StationsCoordinator
+    var coordinator: StationsCoordinatorProtocol
+    
     var viewController: StationViewControllerDelegate
     
     var stations: [Station] = []
     
     let service = Services(network: Network())
     
-    init (`let` coordinator: StationsCoordinator, `let` viewController: StationViewControllerDelegate) {
+    var subscriptions = Set<AnyCancellable>()
+    
+    init (`let` coordinator: StationsCoordinatorProtocol, `let` viewController: StationViewControllerDelegate) {
         self.coordinator = coordinator
         self.viewController = viewController
     }
@@ -33,14 +37,14 @@ final class StationsViewModel: StationsViewModelDelegate {
     func goToDetail (station: Station) {
         coordinator.showStationDetail(station: station)
     }
-    
+      
     func loadStations() {
         
-        service.getStations { stationReceived in
-            self.stations = stationReceived
-            self.viewController.reloadTable()
-//            print(self.stations)
-        }
-        
+        service.getStations().sink { stationList in
+            DispatchQueue.main.async {
+                self.stations = stationList.stations
+                self.viewController.reloadTable()
+            }
+        }.store(in: &subscriptions)
     }
 }

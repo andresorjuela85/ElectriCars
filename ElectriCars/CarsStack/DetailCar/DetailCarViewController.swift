@@ -19,7 +19,7 @@ final class DetailCarViewController: UIViewController {
     private var makeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "Make"
+        label.text = "DETAILCAR_LABEL_MAKE".localized()
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 18)
         return label
@@ -36,7 +36,7 @@ final class DetailCarViewController: UIViewController {
     private var mLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "Model"
+        label.text = "DETAILCAR_LABEL_MODEL".localized()
         label.textAlignment = .center
         return label
     }()
@@ -51,7 +51,7 @@ final class DetailCarViewController: UIViewController {
     private var chargeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "Charge trip version"
+        label.text = "DETAILCAR_LABEL_CHARGE".localized()
         label.textAlignment = .center
         return label
     }()

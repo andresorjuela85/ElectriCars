@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import Combine
 
 protocol DetailStationViewModelDelegate {
     
@@ -20,13 +21,15 @@ final class DetailStationViewModel: DetailStationViewModelDelegate {
     
     var station: Station?
     var reviews: [Review] = []
-    var coordinator: StationsCoordinator
+    var coordinator: StationsCoordinatorProtocol
     
     var viewController: DetailStationViewController
     
     let service = Services(network: Network())
     
-    init(station: Station, coordinator: StationsCoordinator, viewController: DetailStationViewController) {
+    var subscriptions = Set<AnyCancellable>()
+    
+    init(station: Station, coordinator: StationsCoordinatorProtocol, viewController: DetailStationViewController) {
         self.station = station
         self.coordinator = coordinator
         self.viewController = viewController
@@ -34,17 +37,19 @@ final class DetailStationViewModel: DetailStationViewModelDelegate {
     
     func goToReview(delegate: AddReviewDelegate?) {
         if let stationId = station?.id {
-        coordinator.showAddReview(stationId: stationId, delegate: delegate)
+            coordinator.showAddReview(stationId: stationId, delegate: delegate)
         }
     }
     
     func loadReviews() {
         
         if let id = station?.id {
-        service.getReviews(stationId: id) { reviewReceived in
-            self.reviews = reviewReceived
-            self.viewController.reloadTable()
-        }
+            service.getReviews(stationId: id).sink { reviewList in
+                DispatchQueue.main.async {
+                    self.reviews = reviewList.reviews
+                    self.viewController.reloadTable()
+                }
+            }.store(in: &subscriptions)
         }
     }
 }

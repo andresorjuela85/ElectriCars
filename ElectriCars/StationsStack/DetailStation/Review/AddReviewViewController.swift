@@ -10,6 +10,7 @@ import UIKit
 protocol AddReviewDelegate {
     
     func didCreateReview()
+    
 }
 
 final class AddReviewViewController: UIViewController {
@@ -28,7 +29,7 @@ final class AddReviewViewController: UIViewController {
     private let selectLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "Select a rating:"
+        label.text = "ADDREVIEW_LABEL_SELECT".localized()
         return label
     }()
     
@@ -42,7 +43,7 @@ final class AddReviewViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = .purple
         button.layer.cornerRadius = 3
-        button.setTitle("Add review", for: .normal)
+        button.setTitle("ADDREVIEW_ADD_TITLE".localized(), for: .normal)
         button.setTitleColor(.black, for: .normal)
         return button
     }()
@@ -50,7 +51,7 @@ final class AddReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Add review"
+        title = "ADDREVIEW_ADD_TITLE".localized()
         view.backgroundColor = .darkGray
         setupPicker()
         setupSubviews()
@@ -80,7 +81,7 @@ final class AddReviewViewController: UIViewController {
         
         ratingPickerView.delegate = self
         ratingPickerView.dataSource = self
-        reviewTextField.placeholder = "Add your review"
+        reviewTextField.placeholder = "ADDREVIEW_PICKER_TEXT".localized()
         reviewTextField.borderStyle = UITextField.BorderStyle.line
         reviewTextField.backgroundColor = .white
     }

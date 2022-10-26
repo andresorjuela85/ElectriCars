@@ -20,20 +20,20 @@ final class StationsTableViewCell: UITableViewCell {
         didSet {
             if let name = station?.name {
                 stationLabel.text = name
-                stationLabel.textColor = .white
+//                stationLabel.textColor = .white
                 stationLabel.font = .boldSystemFont(ofSize: 18)
             }
             
             if let adress = station?.address {
                 adressLabel.text = adress
-                adressLabel.textColor = .white
+//                adressLabel.textColor = .white
             }
             
             if let city = station?.city {
                 cityLabel.text = city
                 if let country = station?.country {
                     cityLabel.text = city + ", " + country
-                    cityLabel.textColor = .white
+//                    cityLabel.textColor = .white
                 }
             }
         }
@@ -42,10 +42,11 @@ final class StationsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = .darkGray
+        contentView.backgroundColor = .white
         contentView.addSubview(stationLabel)
         contentView.addSubview(adressLabel)
         contentView.addSubview(cityLabel)
+        setupSubviews()
     }
     
     required init?(coder: NSCoder) {
@@ -54,14 +55,13 @@ final class StationsTableViewCell: UITableViewCell {
     
     //MARK: Subviews constraints
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    func setupSubviews() {
         
         stationLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stationLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            stationLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             stationLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 7/8),
-            stationLabel.heightAnchor.constraint(equalToConstant: 20),
+//            stationLabel.heightAnchor.constraint(equalToConstant: 20),
             stationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)
         ])
         
@@ -69,15 +69,17 @@ final class StationsTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             adressLabel.topAnchor.constraint(equalTo: stationLabel.bottomAnchor, constant: 10),
             adressLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 7/8),
-            adressLabel.heightAnchor.constraint(equalToConstant: 20),
+//            adressLabel.heightAnchor.constraint(equalToConstant: 20),
             adressLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)
         ])
         
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cityLabel.topAnchor.constraint(equalTo: adressLabel.bottomAnchor, constant: 5),
+            
             cityLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 7/8),
-            cityLabel.heightAnchor.constraint(equalToConstant: 20),
+//            cityLabel.heightAnchor.constraint(equalToConstant: 20),
+            cityLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             cityLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)
         ])
     }
