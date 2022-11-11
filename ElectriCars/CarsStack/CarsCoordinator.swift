@@ -15,7 +15,7 @@ protocol CoordinatorProtocol {
 protocol CarsCoordinatorProtocol: CoordinatorProtocol {
     func showCarsViewController()
     func showDetail(car: Car)
-    func start()
+
 }
 
 final class CarsCoordinator: CarsCoordinatorProtocol {

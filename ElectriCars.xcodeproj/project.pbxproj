@@ -152,7 +152,6 @@
 			children = (
 				545BAD8028A2D9AD00DEAE19 /* AddReviewViewController.swift */,
 				545BAD8228A3056800DEAE19 /* AddReviewViewModel.swift */,
-				545BAD8428A3FD1C00DEAE19 /* ReviewTableViewCell.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -216,6 +215,7 @@
 				547DE17E289D8405003ED4ED /* DetailStationViewController.swift */,
 				547DE180289D841B003ED4ED /* DetailStationViewModel.swift */,
 				5468940528C8DD8A00F996CD /* DetailHeaderView.swift */,
+				545BAD8428A3FD1C00DEAE19 /* ReviewTableViewCell.swift */,
 				5409DAD528CB948B00734E17 /* Review */,
 			);
 			path = DetailStation;

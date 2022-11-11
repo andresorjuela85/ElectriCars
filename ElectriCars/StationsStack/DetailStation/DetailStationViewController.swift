@@ -16,7 +16,6 @@ protocol DetailStationViewControllerDelegate {
 final class DetailStationViewController: UIViewController {
     
     var viewModel: DetailStationViewModel?
-    let screen = Screens()
     private let reviewTable = UITableView(frame: .zero, style: .grouped)
     private let map = MKMapView()
     private let pin = MKPointAnnotation()
@@ -43,9 +42,7 @@ final class DetailStationViewController: UIViewController {
         super.viewDidLoad()
         
         setupMap()
-        
         view.backgroundColor = .black
-        
         viewModel?.loadReviews()
         setupTable()
         setupButton()
@@ -125,8 +122,8 @@ extension DetailStationViewController: UITableViewDelegate {
         return viewModel?.reviews.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 65
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

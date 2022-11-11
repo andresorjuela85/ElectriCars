@@ -40,11 +40,7 @@ final class CarsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .darkGray
-        
-        contentView.addSubview(carImages)
-        contentView.addSubview(brandLabel)
-        contentView.addSubview(nameLabel)
+        setupView()
         setupSubviews()
     }
     
@@ -52,6 +48,12 @@ final class CarsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupView() {
+        contentView.backgroundColor = .darkGray
+        contentView.addSubview(carImages)
+        contentView.addSubview(brandLabel)
+        contentView.addSubview(nameLabel)
+    }
     //MARK: Subviews constraints
     
     func setupSubviews() {

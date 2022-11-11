@@ -26,10 +26,11 @@ final class CarsViewController: UIViewController {
         
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        tableView.reloadData()
-//    }
+    override func loadView() {
+        super.loadView()
+        tableView.frame = view.bounds
+        view.addSubview(tableView)
+    }
     
     func setupInterface() {
         
@@ -37,9 +38,7 @@ final class CarsViewController: UIViewController {
     }
     
     func setupTable() {
-        
-        tableView.frame = view.bounds
-        view.addSubview(tableView)
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CarsTableViewCell.self, forCellReuseIdentifier: CarsTableViewCell.identifier)
@@ -65,7 +64,7 @@ extension CarsViewController: UITableViewDelegate {
         
         return viewModel?.cars.count ?? 0
     }
-
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }

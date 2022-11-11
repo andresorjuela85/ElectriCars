@@ -59,7 +59,7 @@ final class ReviewTableViewCell: UITableViewCell {
             
             ratingLabel.text = "REVIEWTABLE_LABEL_RATING".localized()
             ratingLabel.textColor = .white
-
+            
             if let star = review?.rating {
                 
                 switch star {
@@ -84,7 +84,7 @@ final class ReviewTableViewCell: UITableViewCell {
                     starImage4.image = UIImage(systemName: Assets.Icons.star)
                     starImage5.image = UIImage(systemName: Assets.Icons.star)
                 default:
-                    print("Error")
+                    print("Not an accepted rating")
                 }
             }
         }
@@ -93,15 +93,8 @@ final class ReviewTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = .black
-        contentView.addSubview(reviewLabel)
-        contentView.addSubview(ratingLabel)
-        contentView.addSubview(starImage1)
-        contentView.addSubview(starImage2)
-        contentView.addSubview(starImage3)
-        contentView.addSubview(starImage4)
-        contentView.addSubview(starImage5)
-        setupViews()
+        setupView()
+        setupSubviews()
     }
     
     required init?(coder: NSCoder) {
@@ -110,7 +103,18 @@ final class ReviewTableViewCell: UITableViewCell {
     
     //MARK: Subviews constraints
     
-    func setupViews() {
+    func setupView() {
+        contentView.backgroundColor = .black
+        contentView.addSubview(reviewLabel)
+        contentView.addSubview(ratingLabel)
+        contentView.addSubview(starImage1)
+        contentView.addSubview(starImage2)
+        contentView.addSubview(starImage3)
+        contentView.addSubview(starImage4)
+        contentView.addSubview(starImage5)
+    }
+    
+    func setupSubviews() {
         
         reviewLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -123,7 +127,7 @@ final class ReviewTableViewCell: UITableViewCell {
         ratingLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             ratingLabel.topAnchor.constraint(equalTo: reviewLabel.bottomAnchor, constant: 5),
-            ratingLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5),
+            ratingLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             ratingLabel.leadingAnchor.constraint(equalTo: reviewLabel.leadingAnchor),
             ratingLabel.widthAnchor.constraint(equalToConstant: 80)
         ])

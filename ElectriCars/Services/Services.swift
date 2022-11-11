@@ -11,9 +11,9 @@ import Combine
 
 protocol ServicesDelegate {
     
-    func getCars() -> AnyPublisher<CarList, Never>
-    func getStations() -> AnyPublisher<StationList, Never>
-    func getReviews(stationId: String) -> AnyPublisher<ReviewList, Never>
+    func getCars() -> AnyPublisher<CarList, Error>
+    func getStations() -> AnyPublisher<StationList, Error>
+    func getReviews(stationId: String) -> AnyPublisher<ReviewList, Error>
     func addReview(stationId: String, rating: Int, message: String)
 }
 
@@ -25,28 +25,19 @@ final class Services: ServicesDelegate {
         self.network = network
     }
     
-    func getCars() -> AnyPublisher<CarList, Never> {
+    func getCars() -> AnyPublisher<CarList, Error> {
         
         return network.fetch(of: CarList.self, query: CarListQuery(size: 30))
-            .catch { error in
-                return Just(CarList(data: nil))
-            }.eraseToAnyPublisher()
     }
     
-    func getStations() -> AnyPublisher<StationList, Never> {
+    func getStations() -> AnyPublisher<StationList, Error> {
         
         return network.fetch(of: StationList.self, query: StationListQuery())
-            .catch { error in
-                return Just(StationList(data: nil))
-            }.eraseToAnyPublisher()
     }
     
-    func getReviews(stationId: String) -> AnyPublisher<ReviewList, Never> {
+    func getReviews(stationId: String) -> AnyPublisher<ReviewList, Error> {
         
         return network.fetch(of: ReviewList.self, query: ReviewListQuery(stationId: stationId))
-            .catch { error in
-                return Just(ReviewList(data: nil))
-            }.eraseToAnyPublisher()
     }
     
     func addReview(stationId: String, rating: Int, message: String) {

@@ -12,9 +12,7 @@ protocol StationsCoordinatorProtocol: CoordinatorProtocol {
     func showStationsViewController()
     func showStationDetail(station: Station)
     func showAddReview(stationId: String, delegate: AddReviewDelegate?)
-    func start()
 }
-
 
 final class StationsCoordinator: StationsCoordinatorProtocol {
     

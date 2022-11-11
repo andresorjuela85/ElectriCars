@@ -13,7 +13,7 @@ protocol StationViewControllerDelegate {
 }
 
 final class StationsViewController: UIViewController {
-
+    
     var viewModel: StationsViewModel?
     
     private let tableView = UITableView()
@@ -38,7 +38,6 @@ final class StationsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(StationsTableViewCell.self, forCellReuseIdentifier: StationsTableViewCell.identifier)
-//        tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
     }
 }
 
@@ -54,7 +53,7 @@ extension StationsViewController: StationViewControllerDelegate {
 //MARK: Table configuration
 
 extension StationsViewController: UITableViewDelegate {
- 
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.stations.count ?? 0
     }

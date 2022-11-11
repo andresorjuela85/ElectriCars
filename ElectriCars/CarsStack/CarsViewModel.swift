@@ -40,7 +40,9 @@ final class CarsViewModel: CarsViewModelDelegate {
     
     func loadCars() {
         
-        service.getCars().sink { carList in
+        service.getCars().sink { error in
+            print(error)
+        } receiveValue: { carList in
             DispatchQueue.main.async {
                 self.cars = carList.cars
                 self.viewController.reloadTable()

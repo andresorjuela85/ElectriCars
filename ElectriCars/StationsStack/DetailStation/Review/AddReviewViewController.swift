@@ -51,8 +51,7 @@ final class AddReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "ADDREVIEW_ADD_TITLE".localized()
-        view.backgroundColor = .darkGray
+        setupView()
         setupPicker()
         setupSubviews()
         addButton.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
@@ -66,8 +65,8 @@ final class AddReviewViewController: UIViewController {
         
         if message != "" {
             
-                viewModel?.pushReview(rating: rating, message: message)
-                delegate?.didCreateReview()
+            viewModel?.pushReview(rating: rating, message: message)
+            delegate?.didCreateReview()
         }
         else {
             print("Review empty")
@@ -76,6 +75,10 @@ final class AddReviewViewController: UIViewController {
     }
     
     //MARK: Picker configure
+    func setupView() {
+        title = "ADDREVIEW_ADD_TITLE".localized()
+        view.backgroundColor = .darkGray
+    }
     
     func setupPicker() {
         

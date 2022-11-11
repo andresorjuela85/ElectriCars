@@ -37,10 +37,12 @@ final class StationsViewModel: StationsViewModelDelegate {
     func goToDetail (station: Station) {
         coordinator.showStationDetail(station: station)
     }
-      
+    
     func loadStations() {
         
-        service.getStations().sink { stationList in
+        service.getStations().sink { error in
+            print(error)
+        } receiveValue: { stationList in
             DispatchQueue.main.async {
                 self.stations = stationList.stations
                 self.viewController.reloadTable()

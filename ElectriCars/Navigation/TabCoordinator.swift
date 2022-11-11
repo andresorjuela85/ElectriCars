@@ -19,16 +19,16 @@ final class TabCoordinator {
     
     let carsViewController = UINavigationController()
     let stationsViewController = UINavigationController()
-        
+    
     init(presenter: UIWindow) {
         
         self.presenter = presenter
         self.screens = Screens()
-       
+        
         setupTabBar()
         carsViewController.title = "TABBAR_OPTION_NAME_CARS".localized()
         stationsViewController.title = "TABBAR_OPTION_NAME_STATIONS".localized()
-
+        
         guard let items = self.tabBarController.tabBar.items else { return }
         
         let images = [Assets.Icons.car, Assets.Icons.bolt]

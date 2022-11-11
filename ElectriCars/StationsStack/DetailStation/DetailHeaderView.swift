@@ -86,7 +86,6 @@ class DetailTableHeader: UITableViewHeaderFooterView {
             }
             day = ""
             if let weekday = station?.weekday {
-                print(weekday.count)
                 weekday.forEach { weekday in
                     if weekday.periodBegin != nil || weekday.periodEnd != nil {
                         day = day + "\(days[(weekday.weekday ?? 0) - 1 ])  \(weekday.periodBegin ?? "") - \(weekday.periodEnd ?? "")\n"
