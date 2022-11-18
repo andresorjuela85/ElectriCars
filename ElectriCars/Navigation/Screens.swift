@@ -12,7 +12,7 @@ final class Screens {
     
     static func createCarsViewController(coordinator: CarsCoordinatorProtocol) -> UIViewController {
         let viewController = CarsViewController()
-        let viewModel = CarsViewModel(let: coordinator, let: viewController)
+        let viewModel = CarsViewModel(let: coordinator)
         viewController.viewModel = viewModel
         return viewController
     }

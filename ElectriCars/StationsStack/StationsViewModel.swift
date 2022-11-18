@@ -40,13 +40,13 @@ final class StationsViewModel: StationsViewModelDelegate {
     
     func loadStations() {
         
-        service.getStations().sink { error in
-            print(error)
-        } receiveValue: { stationList in
-            DispatchQueue.main.async {
+        service.getStations()
+            .receive(on: DispatchQueue.main)
+            .sink { error in
+                print(error)
+            } receiveValue: { stationList in
                 self.stations = stationList.stations
                 self.viewController.reloadTable()
-            }
-        }.store(in: &subscriptions)
+            }.store(in: &subscriptions)
     }
 }

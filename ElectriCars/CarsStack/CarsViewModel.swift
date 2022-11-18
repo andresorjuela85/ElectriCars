@@ -21,17 +21,16 @@ final class CarsViewModel: CarsViewModelDelegate {
     
     var coordinator: CarsCoordinatorProtocol
     
-    var viewController: CarsViewControllerDelegate
-    
-    var cars: [Car] = []
+    @Published var cars: [Car] = []
     
     let service = Services(network: Network())
     
     var subscriptions = Set<AnyCancellable>()
     
-    init(`let` coordinator: CarsCoordinatorProtocol, `let` viewController: CarsViewControllerDelegate) {
+    init(`let` coordinator: CarsCoordinatorProtocol) {
         self.coordinator = coordinator
-        self.viewController = viewController
+        
+        loadCars()
     }
     
     func goToDetail(car: Car) {
@@ -40,13 +39,11 @@ final class CarsViewModel: CarsViewModelDelegate {
     
     func loadCars() {
         
-        service.getCars().sink { error in
-            print(error)
-        } receiveValue: { carList in
-            DispatchQueue.main.async {
+        service.getCars()
+            .sink { error in
+                print(error)
+            } receiveValue: { carList in
                 self.cars = carList.cars
-                self.viewController.reloadTable()
-            }
-        }.store(in: &subscriptions)
+            }.store(in: &subscriptions)
     }
 }

@@ -6,30 +6,36 @@
 //
 
 import UIKit
-
-protocol CarsViewControllerDelegate {
-    
-    func reloadTable()
-}
+import Combine
 
 final class CarsViewController: UIViewController {
     
     var viewModel: CarsViewModel?
     
+    private var subscriptions = Set<AnyCancellable>()
+    
     private let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBindings()
         setupInterface()
-        viewModel?.loadCars()
         setupTable()
-        
     }
     
     override func loadView() {
         super.loadView()
         tableView.frame = view.bounds
         view.addSubview(tableView)
+    }
+    
+    func setupBindings() {
+        viewModel?.$cars
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.tableView.reloadData()
+            }
+            .store(in: &subscriptions)
     }
     
     func setupInterface() {
@@ -44,15 +50,6 @@ final class CarsViewController: UIViewController {
         tableView.register(CarsTableViewCell.self, forCellReuseIdentifier: CarsTableViewCell.identifier)
     }
     
-}
-
-extension CarsViewController: CarsViewControllerDelegate {
-    
-    func reloadTable() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
 }
 
 //MARK: Table configuration

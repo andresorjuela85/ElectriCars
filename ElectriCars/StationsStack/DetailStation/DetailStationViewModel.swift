@@ -44,14 +44,14 @@ final class DetailStationViewModel: DetailStationViewModelDelegate {
     func loadReviews() {
         
         if let id = station?.id {
-            service.getReviews(stationId: id).sink { error in
-                print(error)
-            } receiveValue: { reviewList in
-                DispatchQueue.main.async {
+            service.getReviews(stationId: id)
+                .receive(on: DispatchQueue.main)
+                .sink { error in
+                    print(error)
+                } receiveValue: { reviewList in
                     self.reviews = reviewList.reviews
                     self.viewController.reloadTable()
-                }
-            }.store(in: &subscriptions)
+                }.store(in: &subscriptions)
         }
     }
 }
